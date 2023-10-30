@@ -2,15 +2,20 @@ const {User} = require("../models");
 
 module.exports = class UserController {
 
-    // static async getUsers(req, res){
-    //     try {
-    //         const users = await User.findAll();
-    //         res.status(200).json(users);
-    //     } catch (error) {
-    //         console.log(error);
-    //         res.status(500).json({message: "Internal Server Error"})
-    //     }
-    // }
+    static async getUsers(req, res){
+        try {
+            const users = await User.findAll(); 
+            res.status(200).json(users);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message: "Internal Server Error"})
+        }
+    }
+
+
+//     {
+//         attributes: ['username', 'email', 'role', 'phoneNumber', 'address']
+// }
 
     // static async getUser(req, res){
     //     try {
