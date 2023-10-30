@@ -2,7 +2,7 @@ const {Category} = require("../models");
 
 module.exports = class CategoryController {
 
-    static async getCategories(req, res){
+    static async getCategories(req, res){   // sudah
         try {
             const categories = await Category.findAll(); 
             res.status(200).json(categories);
@@ -13,10 +13,10 @@ module.exports = class CategoryController {
     }
 
 
-    static async createCategory(req, res){
-        try {
+        static async createCategory(req, res){  //sudah
+            try {
             console.log(req.body)
-            const category = await Category.create(req.body);
+            const category = await Category.create(req.body);    //Categor
             res.status(201).json(category);
         } catch (error) {
             console.log(error.name);
@@ -29,7 +29,7 @@ module.exports = class CategoryController {
     }
 
 
-    static async editCategory(req, res){
+    static async editCategory(req, res){    //sudah
         try {
             let category = await Category.findByPk(req.params.id);
             if(!category) throw ({name: "NotFound"});
@@ -48,7 +48,7 @@ module.exports = class CategoryController {
     }
 
     
-    static async deleteCategory(req, res){
+    static async deleteCategory(req, res){  // sudah
         try {
             let category = await Category.findByPk(req.params.id);
             if(!category) throw ({name: "NotFound"});

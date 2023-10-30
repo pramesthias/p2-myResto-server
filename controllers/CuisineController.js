@@ -1,4 +1,4 @@
-const {Cuisine} = require("../models");
+const {User, Category, Cuisine} = require("../models");
 
 module.exports = class CuisineController {
 
@@ -7,7 +7,7 @@ module.exports = class CuisineController {
             const cuisines = await Cuisine.findAll({
                 include: [{
                     model: User,
-                    attributes: ['username', 'email', 'role', 'phoneNumber', 'address']
+                    attributes: {exclude: ['password']},
                 },
                 { model: Category }]
             });

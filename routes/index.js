@@ -9,14 +9,7 @@ const router = require('express').Router();
 
 router.get("/users", UserController.getUsers); //all
 
-// router.get("/users/:id", UserController.getUser); 
-
 router.post("/add-users", UserController.createUser);
-
-// router.put("/users/:id", UserController.editUser); 
-
-// router.delete("/users/:id", UserController.deleteUser); 
-
 
 
 // CATEGORIES
@@ -42,9 +35,6 @@ router.post("/cuisines", CuisineController.createCuisine);
 router.put("/cuisines/:id", CuisineController.editCuisine);  //edit
 
 router.delete("/cuisines/:id", CuisineController.deleteCuisine); 
-
-
-
 
 
 
