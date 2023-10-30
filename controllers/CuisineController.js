@@ -66,20 +66,20 @@ module.exports = class CuisineController {
 
 
     //DELETE
-    // static async deleteCuisine(req, res){
-    //     try {
-    //         let cuisine = await Cuisine.findByPk(req.params.id);
-    //         if(!cuisine) throw ({name: "NotFound"});
-    //         await cuisine.destroy();
-    //         res.status(200).json({message: `${cuisine.name} success to delete`});
-    //             // res.status(204).end(); tidak ada response
-    //     } catch (error) {
-    //         if(error.name === "NotFound") {
-    //             res.status(404).json({message: "error not found"});
-    //         } else {
-    //             console.log(error);
-    //             res.status(500).json({message: "Internal Server Error"});
-    //         }
-    //     }
-    // }
+    static async deleteCuisine(req, res){
+        try {
+            let cuisine = await Cuisine.findByPk(req.params.id);
+            if(!cuisine) throw ({name: "NotFound"});
+            await cuisine.destroy();
+            res.status(200).json({message: `${cuisine.name} success to delete`});
+                // res.status(204).end(); tidak ada response
+        } catch (error) {
+            if(error.name === "NotFound") {
+                res.status(404).json({message: "error not found"});
+            } else {
+                console.log(error);
+                res.status(500).json({message: "Internal Server Error"});
+            }
+        }
+    }
 }
