@@ -19,15 +19,15 @@ module.exports = class CuisineController {
     }
 
 
-    // static async getCuisine(req, res){
-    //     try {
-    //         const cuisine = await Cuisine.findByPk(req.params.id);
-    //         res.status(200).json(cuisine);
-    //     } catch (error) {
-    //         console.log(error);
-    //         res.status(500).json({message: "Internal Server Error"})
-    //     }
-    // }
+    static async getCuisine(req, res){
+        try {
+            const cuisine = await Cuisine.findByPk(req.params.id);
+            res.status(200).json(cuisine);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message: "Internal Server Error"})
+        }
+    }
 
 
     static async createCuisine(req, res){
