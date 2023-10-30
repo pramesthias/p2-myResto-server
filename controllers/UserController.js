@@ -17,15 +17,15 @@ module.exports = class UserController {
 //         attributes: ['username', 'email', 'role', 'phoneNumber', 'address']
 // }
 
-    // static async getUser(req, res){
-    //     try {
-    //         const user = await User.findByPk(req.params.id);
-    //         res.status(200).json(user);
-    //     } catch (error) {
-    //         console.log(error);
-    //         res.status(500).json({message: "Internal Server Error"})
-    //     }
-    // }
+    static async getUser(req, res){
+        try {
+            const user = await User.findByPk(req.params.id);
+            res.status(200).json(user);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message: "Internal Server Error"})
+        }
+    }
 
     static async createUser(req, res){
         try {
