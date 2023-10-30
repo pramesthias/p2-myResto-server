@@ -12,11 +12,6 @@ module.exports = class UserController {
         }
     }
 
-
-//     {
-//         attributes: ['username', 'email', 'role', 'phoneNumber', 'address']
-// }
-
     static async getUser(req, res){
         try {
             const user = await User.findByPk(req.params.id);
