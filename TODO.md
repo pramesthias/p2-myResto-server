@@ -59,11 +59,11 @@ Target:
   - [ x ] Jika request gagal karena validasi tidak terpenuhi, kembalikan response dengan 400 status code dan response body berupa object yang berisikan validation errors.
   - [ x ] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
 
-- [ ] Menghapus entitas kedua genres/categories/types (Delete / DELETE)
-  - [ ] Id dikirimkan via request params
-  - [ ] Jika request berhasil, kembalikan response dengan 200 status code dan response berupa object yang berisikan data yang berhasil di-delete atau bisa juga mengembalikan data message saja message: '[entity name] success to delete'
-  - [ ] Jika request gagal karena todo tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found
-  - [ ] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
+- [ x ] Menghapus entitas kedua genres/categories/types (Delete / DELETE)
+  - [ x ] Id dikirimkan via request params
+  - [ x ] Jika request berhasil, kembalikan response dengan 200 status code dan response berupa object yang berisikan data yang berhasil di-delete atau bisa juga mengembalikan data message saja message: '[entity name] success to delete'
+  - [ x ] Jika request gagal karena todo tidak ditemukan, kembalikan response dengan 404 status code dan response body berupa object yang berisikan error not found
+  - [ x ] Jika request gagal karena kesalahan server, kembalikan response dengan 500 status code.
 
 - [ ] Mengambil semua data entitas utama (Read / GET) untuk public site
   - [ ] Tambahkan prefix /pub pada endpoint ini
