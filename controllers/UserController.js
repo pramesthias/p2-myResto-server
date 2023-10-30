@@ -70,21 +70,21 @@ module.exports = class UserController {
     }
 
     //DELETE
-    // static async deleteUser(req, res){
-    //     try {
-    //         let user = await User.findByPk(req.params.id);
-    //         if(!user) throw ({name: "NotFound"});
-    //         await user.destroy();
-    //         res.status(200).json({message: `${user.username} success to delete`});
-    //             // res.status(204).end(); tidak ada response
-    //     } catch (error) {
-    //         if(error.name === "NotFound") {
-    //             res.status(404).json({message: "error not found"});
-    //         } else {
-    //             console.log(error);
-    //             res.status(500).json({message: "Internal Server Error"});
-    //         }
-    //     }
-    // }
+    static async deleteUser(req, res){
+        try {
+            let user = await User.findByPk(req.params.id);
+            if(!user) throw ({name: "NotFound"});
+            await user.destroy();
+            res.status(200).json({message: `${user.username} success to delete`});
+                // res.status(204).end(); tidak ada response
+        } catch (error) {
+            if(error.name === "NotFound") {
+                res.status(404).json({message: "error not found"});
+            } else {
+                console.log(error);
+                res.status(500).json({message: "Internal Server Error"});
+            }
+        }
+    }
 
 }
