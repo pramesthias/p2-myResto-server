@@ -13,8 +13,9 @@ module.exports = class CuisineController {
             });
             res.status(200).json(cuisines);
         } catch (error) {
-            console.log(error);
-            res.status(500).json({message: "Internal Server Error"})
+            // console.log(error);
+            // res.status(500).json({message: "Internal Server Error"})
+            next(error);
         }
     }
 
@@ -24,8 +25,9 @@ module.exports = class CuisineController {
             const cuisine = await Cuisine.findByPk(req.params.id);
             res.status(200).json(cuisine);
         } catch (error) {
-            console.log(error);
-            res.status(500).json({message: "Internal Server Error"})
+            // console.log(error);
+            // res.status(500).json({message: "Internal Server Error"})
+            next(error);
         }
     }
 
@@ -70,7 +72,7 @@ module.exports = class CuisineController {
             let cuisine = await Cuisine.findByPk(req.params.id);
 
             // if(!cuisine) throw ({name: "NotFound"});
-            
+
             await cuisine.destroy();
             res.status(200).json({message: `${cuisine.name} success to delete`});
                 // res.status(204).end(); tidak ada response
