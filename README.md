@@ -493,6 +493,56 @@ _Response (400 - Bad Request)_
 }
 ```
 ---
+### POST /login
+
+> User login
+
+_Request Header_
+```
+not needed
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "email": "string",
+    "password": "string"
+}
+```
+
+_Response (200 - OK)_
+```
+{
+    "access_token": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Email is missing"
+        OR
+    "message": "Password is missing"
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+    "message": "error invalid email or password"
+}
+```
+---
 ### Global Error
 
 _Response (500 - Internal Server Error)_
