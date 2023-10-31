@@ -33,6 +33,7 @@ module.exports = class CuisineController {
     static async createCuisine(req, res){
         try {
             const cuisine = await Cuisine.create(req.body);
+            // const cuisine = await Cuisine.create({...req.body, req.user.id});    //gaperlu kirim authorId karna ikutinaccess token
             res.status(201).json(cuisine);
         } catch (error) {
             console.log(error.name);
@@ -67,7 +68,9 @@ module.exports = class CuisineController {
     static async deleteCuisine(req, res){   //DELETE
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
-            if(!cuisine) throw ({name: "NotFound"});
+
+            // if(!cuisine) throw ({name: "NotFound"});
+            
             await cuisine.destroy();
             res.status(200).json({message: `${cuisine.name} success to delete`});
                 // res.status(204).end(); tidak ada response

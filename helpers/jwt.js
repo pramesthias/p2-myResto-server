@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-// const secret = 'apa_hayouw'
 const secret = process.env.secret;
 
 const signToken = (payload) => {

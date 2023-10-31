@@ -441,6 +441,58 @@ _Response (404 - Not Found)_
 }
 ```
 ---
+### POST /add-users
+
+> Register new user
+
+_Request Header_
+```
+not needed
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "username": "string",
+    "email": "string",
+    "password": "string",
+    "phoneNumber": "string",
+    "address": "string"
+}
+```
+
+_Response (201 - Created)_
+```
+{
+    "id": integer,
+    "username": "string",
+    "email": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Email cannot be Empty!"
+        OR
+    "message": "Email should be written in email format!"
+        OR
+    "message": "Password cannot be Empty!"
+        OR
+    "message": "Minimum password length is 5"
+}
+```
+---
 ### Global Error
 
 _Response (500 - Internal Server Error)_
