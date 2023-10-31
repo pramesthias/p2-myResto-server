@@ -7,9 +7,9 @@ const router = require('express').Router();
 
 // USER
 
-router.get("/users", UserController.getUsers); //all
+router.post("/add-users", UserController.registerUser);   //register
 
-router.post("/add-users", UserController.createUser);
+router.post("/login", UserController.login); //login
 
 
 // CATEGORIES
@@ -30,7 +30,7 @@ router.get("/cuisines", CuisineController.getCuisines); //all
 
 router.get("/cuisines/:id", CuisineController.getCuisine);  //by id
 
-router.post("/cuisines", CuisineController.createCuisine);
+router.post("/cuisines", CuisineController.createCuisine);  //create
 
 router.put("/cuisines/:id", CuisineController.editCuisine);  //edit
 

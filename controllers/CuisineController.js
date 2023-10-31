@@ -45,8 +45,7 @@ module.exports = class CuisineController {
     }
 
 
-    //PUT
-    static async editCuisine(req, res){
+    static async editCuisine(req, res){ //PUT
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
             if(!cuisine) throw ({name: "NotFound"});
@@ -65,8 +64,7 @@ module.exports = class CuisineController {
     }
 
 
-    //DELETE
-    static async deleteCuisine(req, res){
+    static async deleteCuisine(req, res){   //DELETE
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
             if(!cuisine) throw ({name: "NotFound"});

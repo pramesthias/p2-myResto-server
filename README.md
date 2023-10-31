@@ -4,7 +4,7 @@
 > Tuliskan API Docs kamu di sini
 
 # My First Server App
-My Assets App is an application to manage your assets. This app has : 
+My First Server App is an application to __. This app has : 
 * RESTful endpoint for asset's CRUD operation
 * JSON formatted response
 
@@ -439,7 +439,7 @@ _Response (404 - Not Found)_
 {
     "message": "error not found"
 }
-
+```
 ---
 ### Global Error
 
@@ -449,4 +449,3 @@ _Response (500 - Internal Server Error)_
     "message": "Internal Server Error"
 }
 ```
----
