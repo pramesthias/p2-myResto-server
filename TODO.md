@@ -107,21 +107,21 @@ Target:
     - [x] 200: { access_token, email/username, role }
     - [x] 401: { error invalid username or email or password }
 
-- [ ] Menambahkan Authentication dan Authorization
+- [x] Menambahkan Authentication dan Authorization
 
 | Role  | Create | Read  | Update                             | Delete                             |
 | ----- | ------ | ----- | ---------------------------------- | ---------------------------------- |
-| Admin | [ ] ✅  | [ ] ✅ | [ ] ✅                              | [ ] ✅                              |
-| Staff | [ ]  ✅ | [ ] ✅ | [ ] Hanya bisa menghapus miliknya. | [ ] Hanya bisa menghapus miliknya. |
+| Admin | [x] ✅  | [x] ✅ | [x] ✅                              | [x] ✅                              |
+| Staff | [x]  ✅ | [x] ✅ | [x] Hanya bisa menghapus miliknya. | [x] Hanya bisa menghapus miliknya. |
 
 - [x] Error status code 401, apabila user yang belum login, atau yang mempunyai token yang salah mencoba mengakses endpoint CRD.
-- [ ] Error status code 403, apabila staff mengakses delete pada entitas yang bukan miliknya.
+- [x] Error status code 403, apabila staff mengakses delete pada entitas yang bukan miliknya.
 
   Note: Untuk mengirim access_token, gunakan request header (diterima sebagai req.headers di Express).
 
 ### **Error Handler**
 
-- [ ] 401 - Error login user not found atau password not matched
+- [x] 401 - Error login user not found atau password not matched
 - [x] 401 - Error authentication
 - [x] 403 - Forbidden error di authorization
 - [x] 400 - Error validation saat create.

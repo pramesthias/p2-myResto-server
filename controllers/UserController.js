@@ -36,20 +36,20 @@ module.exports = class UserController {
 
             const user = await User.findOne({ where: {email} }); 
             if(!user){
-                res.status(401).json({message: "error invalid email or password"});
+                next({name: 'NotFound', message: "user not found"});
                 return;
             }
 
-            if(req.body.role === "Staff"){ 
+            if(user.role === "Staff"){ 
             const isValidPassword = comparePassword(password, user.password);
             if(!isValidPassword){
-                res.status(401).json({message: "error invalid email or password"});
+                next({name: 'NotFound', message: "password not matched"});
                 return;
-                }
             }
+        }
 
             const access_token = signToken({ id: user.id });
-            res.status(200).json({ access_token}); 
+            res.status(200).json({ access_token, email: user.email, role: user.role}); 
             
         } catch (error) {
             next(error);

@@ -52,7 +52,6 @@ module.exports = class CuisineController {
     static async editCuisine(req, res, next){
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
-            // if(!cuisine) throw ({name: "NotFound"});
             await cuisine.update(req.body);
             res.status(200).json(req.body);
         } catch (error) {
@@ -64,9 +63,6 @@ module.exports = class CuisineController {
     static async deleteCuisine(req, res, next){   //DELETE
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
-
-            // if(!cuisine) throw ({name: "NotFound"});
-
             await cuisine.destroy();
             res.status(200).json({message: `${cuisine.name} success to delete`});
                 // res.status(204).end(); tidak ada response
@@ -75,18 +71,19 @@ module.exports = class CuisineController {
         }
     }
 
+
     static async updateImageUrl(req, res, next){
         try {
 
             const cuisine = await Cuisine.findByPk(req.params.id);
 
             if(!cuisine) {
-                // next(throw ({name: "NotFound"}));
+                next({name: 'NotFound', message: "Cuisine not found"});
+                return;
             } 
                 
 
-
-            console.log(req.file, req.body);
+            // console.log(req.file, req.body);
             const base64File = Buffer.from(req.file.buffer).toString('base64');
 
             const dataURI = `data:${req.file.mimetype};base64,${base64File}`

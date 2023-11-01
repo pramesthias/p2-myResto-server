@@ -8,7 +8,7 @@ module.exports = function errorHandler(error, req, res, next) {
 
         case "JsonWebTokenError":
         case "Unauthenticated": //error.message
-            res.status(401).json({message: error.message ?? "Unauthenticated"}); //BELOM LOGIN / INVALID TOKEN
+            res.status(401).json({message: "Unauthenticated"}); //BELOM LOGIN / INVALID TOKEN
             break;
 
         case "Forbidden":
@@ -16,7 +16,7 @@ module.exports = function errorHandler(error, req, res, next) {
             break;
 
         case "NotFound":
-            res.status(404).json({message: error.message ?? "Data not found"}); //cuisine
+            res.status(404).json({message: error.message ?? "Data not found"});
             break;
 
         default:

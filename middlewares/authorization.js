@@ -3,7 +3,7 @@ const {Cuisine} = require("../models");
 async function cuisineAuthorization(req, res, next) {
     try {
         let cuisine = await Cuisine.findByPk(req.params.id);
-        // console.log(cuisine)
+
         if(!cuisine) throw ({name: "NotFound"})
 
         if(req.user.role === "Admin"){
@@ -15,6 +15,7 @@ async function cuisineAuthorization(req, res, next) {
         }
 
         next();
+
     } catch (error) {
         next(error);
     }

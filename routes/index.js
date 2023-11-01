@@ -14,7 +14,6 @@ const router = require('express').Router();
 
 // USER
 
-
 router.post("/login", UserController.login); //login
 
 router.use(authentication);
