@@ -31,6 +31,12 @@ module.exports = class CuisineController {
     static async getCuisine(req, res, next){
         try {
             const cuisine = await Cuisine.findByPk(req.params.id);
+
+            if(!cuisine){
+                next({name: 'NotFound'});
+                return;
+            }
+
             res.status(200).json(cuisine);
         } catch (error) {
             next(error);
@@ -78,12 +84,16 @@ module.exports = class CuisineController {
             const cuisine = await Cuisine.findByPk(req.params.id);
 
             if(!cuisine) {
-                next({name: 'NotFound', message: "Cuisine not found"});
+                next({name: 'NotFound', message: "error not found"});
                 return;
             } 
-                
 
             // console.log(req.file, req.body);
+            if(!req.file){
+                next({name: 'NoFileError'});
+                return;
+            }
+
             const base64File = Buffer.from(req.file.buffer).toString('base64');
 
             const dataURI = `data:${req.file.mimetype};base64,${base64File}`
@@ -92,11 +102,10 @@ module.exports = class CuisineController {
                 folder: 'cuisines'
             });
 
-
-            await Cuisine.update()
+            await cuisine.update({imgUrl: data.secure_url});
 
             console.log(data)
-            res.json({message: "successfully uploaded"})
+            res.status(200).json({message: `Image ${cuisine.name} success to update`})
             // next();
         } catch (error) {
             console.log(error)

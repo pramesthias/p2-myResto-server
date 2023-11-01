@@ -1,5 +1,5 @@
 module.exports = function errorHandler(error, req, res, next) {
-
+ 
     switch (error.name) {
         case "SequelizeValidationError":
         case "SequelizeUniqueConstraintError":
@@ -16,7 +16,11 @@ module.exports = function errorHandler(error, req, res, next) {
             break;
 
         case "NotFound":
-            res.status(404).json({message: error.message ?? "Data not found"});
+            res.status(404).json({message: error.message ?? "Data not found"}); //cusine -> error
+            break;
+
+        case "NoFileError":
+            res.status(400).json({message: "File is required"}); 
             break;
 
         default:
