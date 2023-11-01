@@ -11,172 +11,10 @@ My First Server App is an application to __. This app has :
 &nbsp;
 
 ## RESTful endpoints
-### GET /categories
 
-> Get all categories
+## Cuisines Public
 
-_Request Header_
-```
-not needed
-```
-
-_URL Params_
-```
-not needed
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200 - OK)_
-```
-[
-    {
-        "id": integer,
-        "name": "string",
-        "createdAt": "date",
-        "updatedAt": "date"
-    },
-    ...
-]
-```
----
-### POST /categories
-
-> Create new categories
-
-_Request Header_
-```
-not needed
-```
-
-_URL Params_
-```
-not needed
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-{
-    "name": "string"
-}
-```
-
-_Response (201 - Created)_
-```
-{
-    "id": integer,
-    "name": "string",
-    "createdAt": "date",
-    "updatedAt": "date"
-}
-```
-
-_Response (400 - Bad Request)_
-```
-{
-    "message": "Name cannot be Empty!"
-}
-```
----
-### PUT /categories/:id
-
-> Edit category by id
-
-_Request Header_
-```
-not needed
-```
-
-_URL Params_
-```
-id: integer [required]
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-{
-    "name": "string"
-}
-```
-
-_Response (201 - Created)_
-```
-{
-    "name": "string"
-}
-```
-
-_Response (400 - Bad Request)_
-```
-{
-    "message": "Name cannot be Empty!"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "error not found"
-}
-```
----
-### DELETE /categories/:id
-
-> Delete category by id
-
-_Request Header_
-```
-not needed
-```
-
-_URL Params_
-```
-id: integer [required]
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200 - OK)_
-```
-{
-    "message": "Western Foods success to delete"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "error not found"
-}
-```
----
-### GET /cuisines
+### GET /pub/cuisines
 
 > Get all cuisines
 
@@ -234,7 +72,7 @@ _Response (200 - OK)_
 ]
 ```
 ---
-### GET /cuisines/:id
+### GET /pub/cuisines/:id
 
 > Get one cuisine by id
 
@@ -273,13 +111,280 @@ _Response (200 - OK)_
 }
 ```
 ---
+
+## Categories
+### GET /categories
+
+> Get all categories
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200 - OK)_
+```
+[
+    {
+        "id": integer,
+        "name": "string",
+        "createdAt": "date",
+        "updatedAt": "date"
+    },
+    ...
+]
+```
+---
+### POST /categories
+
+> Create new categories
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "name": "string"
+}
+```
+
+_Response (201 - Created)_
+```
+{
+    "id": integer,
+    "name": "string",
+    "createdAt": "date",
+    "updatedAt": "date"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Name cannot be Empty!"
+}
+```
+---
+### PUT /categories/:id
+
+> Edit category by id
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+id: integer [required]
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "name": "string"
+}
+```
+
+_Response (201 - Created)_
+```
+{
+    "name": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Name cannot be Empty!"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "error not found"
+}
+```
+---
+### DELETE /categories/:id
+
+> Delete category by id
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+id: integer [required]
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200 - OK)_
+```
+{
+    "message": "Western Foods success to delete"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "error not found"
+}
+```
+---
+
+## Cuisines
+
+### GET /cuisines
+
+> Get all cuisines
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200 - OK)_
+```
+[
+    {
+        "id": integer,
+        "name": "string",
+        "description": "string",
+        "price": integer,
+        "imgUrl": "string",
+        "categoryId": integer,
+        "authorId": integer,
+        "createdAt": "date",
+        "updatedAt": "date",
+        "User": {
+            "id": integer,
+            "username": "string",
+            "email": "string",
+            "role": "string",
+            "phoneNumber": "string",
+            "address": "string",
+            "createdAt": "date",
+            "updatedAt": "date"
+        },
+        "Category": {
+            "id": integer,
+            "name": "string",
+            "createdAt": "date",
+            "updatedAt": "date"
+        }
+    },
+    ...
+]
+```
+---
+### GET /cuisines/:id
+
+> Get one cuisine by id
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+id: integer [required]
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200 - OK)_
+```
+{
+    "id": integer,
+    "name": "string",
+    "description": "string",
+    "price": integer,
+    "imgUrl": "string",
+    "categoryId": integer,
+    "authorId": integer,
+    "createdAt": "date",
+    "updatedAt": "date"
+}
+```
+---
 ### POST /cuisines
 
 > Create new cuisines
 
 _Request Header_
 ```
-not needed
+{"Authorization": "Bearer <your access token>"}
 ```
 
 _URL Params_
@@ -342,7 +447,7 @@ _Response (400 - Bad Request)_
 
 _Request Header_
 ```
-not needed
+{"Authorization": "Bearer <your access token>"}
 ```
 
 _URL Params_
@@ -409,7 +514,7 @@ _Response (404 - Not Found)_
 
 _Request Header_
 ```
-not needed
+{"Authorization": "Bearer <your access token>"}
 ```
 
 _URL Params_
@@ -441,13 +546,16 @@ _Response (404 - Not Found)_
 }
 ```
 ---
+
+## Users
+
 ### POST /add-users
 
 > Register new user
 
 _Request Header_
 ```
-not needed
+{"Authorization": "Bearer <your access token>"}
 ```
 
 _URL Params_
@@ -544,6 +652,36 @@ _Response (401 - Unauthorized)_
 ```
 ---
 ### Global Error
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "string"
+        OR
+    "message": "File is required"
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+    "message": "Unauthenticated"
+}
+```
+
+_Response (403 - Forbidden)_
+```
+{
+    "message": "You are not authorized"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Data not found"
+}
+```
 
 _Response (500 - Internal Server Error)_
 ```

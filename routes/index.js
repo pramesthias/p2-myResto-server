@@ -12,7 +12,6 @@ const upload = multer({ storage });
 const router = require('express').Router();  
 
 
-
 router.get("/pub/cuisines", CuisineController.getCuisines); //all
 
 router.get("/pub/cuisines/:id", CuisineController.getCuisine);  //by id
@@ -22,7 +21,7 @@ router.get("/pub/cuisines/:id", CuisineController.getCuisine);  //by id
 
 router.post("/login", UserController.login); //login
 
-router.use(authentication);
+router.use(authentication); // token
 
 router.post("/add-users", adminOnlyAuth, UserController.registerUser);   //register
 
