@@ -1,8 +1,18 @@
 const {User, Category, Cuisine} = require("../models");
 
+const cloudinary = require('cloudinary').v2;
+          
+const { randomUUID } = require('crypto');
+
+cloudinary.config({ 
+  cloud_name: 'dfyn5hmau', 
+  api_key: '675134913794287', 
+  api_secret: 'SvzDgHcC2OALsrQWGU3uCLAdVxs' 
+});
+
 module.exports = class CuisineController {
 
-    static async getCuisines(req, res){
+    static async getCuisines(req, res, next){
         try {
             const cuisines = await Cuisine.findAll({
                 include: [{
@@ -13,61 +23,45 @@ module.exports = class CuisineController {
             });
             res.status(200).json(cuisines);
         } catch (error) {
-            // console.log(error);
-            // res.status(500).json({message: "Internal Server Error"})
             next(error);
         }
     }
 
 
-    static async getCuisine(req, res){
+    static async getCuisine(req, res, next){
         try {
             const cuisine = await Cuisine.findByPk(req.params.id);
             res.status(200).json(cuisine);
         } catch (error) {
-            // console.log(error);
-            // res.status(500).json({message: "Internal Server Error"})
             next(error);
         }
     }
 
 
-    static async createCuisine(req, res){
+    static async createCuisine(req, res, next){
         try {
-            const cuisine = await Cuisine.create(req.body);
-            // const cuisine = await Cuisine.create({...req.body, req.user.id});    //gaperlu kirim authorId karna ikutinaccess token
+            const cuisine = await Cuisine.create({...req.body, authorId: req.user.id});    //gaperlu kirim authorId karna ikutin access token
+            console.log({authorId: req.user.id})
             res.status(201).json(cuisine);
         } catch (error) {
-            console.log(error.name);
-            if(error.name === "SequelizeValidationError" || error.name === "SequelizeUniqueConstraintError"){
-                res.status(400).json({message: error.errors[0].message});
-                return; 
-            }
-            res.status(500).json({message: "Internal Server Error"});
+            next(error);
         }
     }
 
-
-    static async editCuisine(req, res){ //PUT
+    //gaperlu kirim authorId karna ikutin access token
+    static async editCuisine(req, res, next){
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
-            if(!cuisine) throw ({name: "NotFound"});
+            // if(!cuisine) throw ({name: "NotFound"});
             await cuisine.update(req.body);
             res.status(200).json(req.body);
         } catch (error) {
-            console.log(error.name);
-            if(error.name === "SequelizeValidationError" || error.name === "SequelizeUniqueConstraintError"){
-                res.status(400).json({message: error.errors[0].message}); 
-            } else if(error.name === "NotFound") {
-                res.status(404).json({message: "error not found"});
-            } else {
-                res.status(500).json({message: "Internal Server Error"});
-            }
+            next(error);
         }
     }
 
 
-    static async deleteCuisine(req, res){   //DELETE
+    static async deleteCuisine(req, res, next){   //DELETE
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
 
@@ -77,12 +71,39 @@ module.exports = class CuisineController {
             res.status(200).json({message: `${cuisine.name} success to delete`});
                 // res.status(204).end(); tidak ada response
         } catch (error) {
-            if(error.name === "NotFound") {
-                res.status(404).json({message: "error not found"});
-            } else {
-                console.log(error);
-                res.status(500).json({message: "Internal Server Error"});
-            }
+            next(error);
+        }
+    }
+
+    static async updateImageUrl(req, res, next){
+        try {
+
+            const cuisine = await Cuisine.findByPk(req.params.id);
+
+            if(!cuisine) {
+                // next(throw ({name: "NotFound"}));
+            } 
+                
+
+
+            console.log(req.file, req.body);
+            const base64File = Buffer.from(req.file.buffer).toString('base64');
+
+            const dataURI = `data:${req.file.mimetype};base64,${base64File}`
+            const data = await cloudinary.uploader.upload(dataURI,{ 
+                public_id: `${req.file.originalname}_${randomUUID()}`,
+                folder: 'cuisines'
+            });
+
+
+            await Cuisine.update()
+
+            console.log(data)
+            res.json({message: "successfully uploaded"})
+            // next();
+        } catch (error) {
+            console.log(error)
+            next(error);
         }
     }
 }

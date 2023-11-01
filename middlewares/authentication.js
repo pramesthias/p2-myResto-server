@@ -1,4 +1,4 @@
-const User = require("../models");
+const {User} = require("../models");
 const { verifyToken } = require('../helpers/jwt');
 
 
@@ -16,19 +16,14 @@ async function authentication(req, res, next){
 
         req.user = {
             id: user.id,
-            email: user.email
+            role: user.role
         }
 
+        // console.log(req.user)
         next();
 
     } catch (error) {
         next(error);
-
-        // if(error.name === "JsonWebTokenError" || error.name === "Unauthenticated"){
-        //     res.status(401).json({message: "Unauthenticated"});
-        // } else {
-        //     res.status(500).json({message: "Internal Server Error"});
-        // }
     }
 }
 

@@ -92,20 +92,20 @@ Target:
 
 ### **Authentication + Authorization**
 
-- [ ] POST /add-user (khusus untuk staff, dilakukan oleh admin)
-  - [ ] Request Headers: { Authorization: "Bearer [your access token]" }
-  - [ ] Request body: { email, password }
-  - [ ] Response:
-    - [ ] 201: { id, email }
-    - [ ] 400: { errors }
+- [x] POST /add-user (khusus untuk staff, dilakukan oleh admin)
+  - [x] Request Headers: { Authorization: "Bearer [your access token]" }
+  - [x] Request body: { email, password }
+  - [x] Response:
+    - [x] 201: { id, email }
+    - [x] 400: { errors }
 
   Note: Pastikan password telah terhash sebelum data user masuk ke dalam database.
 
-- [ ] POST /login (semua role, baik admin atau staff)
-  - [ ] Request body: { email, password }
-  - [ ] Response:
-    - [ ] 200: { access_token, email/username, role }
-    - [ ] 401: { error invalid username or email or password }
+- [x] POST /login (semua role, baik admin atau staff)
+  - [x] Request body: { email, password }
+  - [x] Response:
+    - [x] 200: { access_token, email/username, role }
+    - [x] 401: { error invalid username or email or password }
 
 - [ ] Menambahkan Authentication dan Authorization
 
@@ -114,7 +114,7 @@ Target:
 | Admin | [ ] ✅  | [ ] ✅ | [ ] ✅                              | [ ] ✅                              |
 | Staff | [ ]  ✅ | [ ] ✅ | [ ] Hanya bisa menghapus miliknya. | [ ] Hanya bisa menghapus miliknya. |
 
-- [ ] Error status code 401, apabila user yang belum login, atau yang mempunyai token yang salah mencoba mengakses endpoint CRD.
+- [x] Error status code 401, apabila user yang belum login, atau yang mempunyai token yang salah mencoba mengakses endpoint CRD.
 - [ ] Error status code 403, apabila staff mengakses delete pada entitas yang bukan miliknya.
 
   Note: Untuk mengirim access_token, gunakan request header (diterima sebagai req.headers di Express).
@@ -122,11 +122,11 @@ Target:
 ### **Error Handler**
 
 - [ ] 401 - Error login user not found atau password not matched
-- [ ] 401 - Error authentication
-- [ ] 403 - Forbidden error di authorization
-- [ ] 400 - Error validation saat create.
-- [ ] 404 - Data not found.
-- [ ] 500 - Internal error server, dsb
+- [x] 401 - Error authentication
+- [x] 403 - Forbidden error di authorization
+- [x] 400 - Error validation saat create.
+- [x] 404 - Data not found.
+- [x] 500 - Internal error server, dsb
 
 ### **Upload File**
 

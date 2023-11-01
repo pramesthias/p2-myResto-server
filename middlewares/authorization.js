@@ -1,27 +1,35 @@
-// const Cuisine = require("../models");
+const {Cuisine} = require("../models");
 
-// async function cuisineAuthorization(req, res, next) {
-//     try {
-//         let cuisine = await Cuisine.findByPk(req.params.id);
+async function cuisineAuthorization(req, res, next) {
+    try {
+        let cuisine = await Cuisine.findByPk(req.params.id);
+        // console.log(cuisine)
+        if(!cuisine) throw ({name: "NotFound"})
 
-//         if(!cuisine) throw ({name: "NotFound"})
+        if(req.user.role === "Admin"){
+           return next();
+        } 
 
-//         if(cuisine.authorId !== req.user.id){
-//             throw {name: "Forbidden"}
-//         }
+        if (cuisine.authorId !== req.user.id){
+            throw {name: "Forbidden"}
+        }
 
-//         next();
-//     } catch (error) {
-//         next(error);
+        next();
+    } catch (error) {
+        next(error);
+    }
+}
 
-        // if(error.name === "Forbidden"){
-        //     res.status(403).json({message: "You are not authorized"});
-        // } else if (error.name === "NotFound") {
-        //     res.status(404).json({message: "Cuisine not found"});
-        // } else {
-        //     res.status(500).json({message: "Internal Server Error"});
-        // }
-//     }
-// }
+async function adminOnlyAuth(req, res, next){
+    try {
+        if(req.user.role === "Admin"){
+            next();
+        } else {
+            throw {name: "Forbidden"};
+        }
+    } catch (error) {
+        next(error);
+    }
+}
 
-// module.exports = cuisineAuthorization
+module.exports = {cuisineAuthorization, adminOnlyAuth};
