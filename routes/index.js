@@ -32,10 +32,8 @@ router.get("/categories", CategoryController.getCategories);
 
 router.post("/categories", CategoryController.createCategory);  
 
-router.put("/categories/:id", CategoryController.editCategory);  
-
-router.delete("/categories/:id", CategoryController.deleteCategory); 
-
+router.put("/categories/:id", adminOnlyAuth, CategoryController.editCategory);  
+ 
 
 // CUISINE
 

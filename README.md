@@ -4,7 +4,7 @@
 > Tuliskan API Docs kamu di sini
 
 # My First Server App
-My First Server App is an application to __. This app has : 
+My First Server App is an application developed for assignment purposes. This app has : 
 * RESTful endpoint for asset's CRUD operation
 * JSON formatted response
 
@@ -16,7 +16,7 @@ My First Server App is an application to __. This app has :
 
 ### GET /pub/cuisines
 
-> Get all cuisines
+> Get all cuisines for public site
 
 _Request Header_
 ```
@@ -74,7 +74,7 @@ _Response (200 - OK)_
 ---
 ### GET /pub/cuisines/:id
 
-> Get one cuisine by id
+> Get one cuisine by id for public site
 
 _Request Header_
 ```
@@ -108,6 +108,118 @@ _Response (200 - OK)_
     "authorId": integer,
     "createdAt": "date",
     "updatedAt": "date"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Cuisine not found"
+}
+```
+
+---
+
+## Users
+
+### POST /add-users
+
+> Register new user
+
+_Request Header_
+```
+{"Authorization": "Bearer <your access token>"}
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "username": "string",
+    "email": "string",
+    "password": "string",
+    "phoneNumber": "string",
+    "address": "string"
+}
+```
+
+_Response (201 - Created)_
+```
+{
+    "id": integer,
+    "email": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "Email cannot be Empty!"
+        OR
+    "message": "Email should be written in email format!"
+        OR
+    "message": "Password cannot be Empty!"
+        OR
+    "message": "Minimum password length is 5"
+}
+```
+---
+### POST /login
+
+> User login
+
+_Request Header_
+```
+not needed
+```
+
+_URL Params_
+```
+not needed
+```
+
+_Data Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+    "email": "string",
+    "password": "string"
+}
+```
+
+_Response (200 - OK)_
+```
+{
+    "access_token": "string"
+    "email": "string",
+    "role": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "message": "error invalid email or password"
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+    "message": "user not found or password not matched"
 }
 ```
 ---
@@ -222,7 +334,10 @@ _Request Body_
 _Response (201 - Created)_
 ```
 {
-    "name": "string"
+    "id": integer,
+    "name": "string",
+    "createdAt": "date",
+    "updatedAt": "date"
 }
 ```
 
@@ -236,45 +351,7 @@ _Response (400 - Bad Request)_
 _Response (404 - Not Found)_
 ```
 {
-    "message": "error not found"
-}
-```
----
-### DELETE /categories/:id
-
-> Delete category by id
-
-_Request Header_
-```
-{"Authorization": "Bearer <your access token>"}
-```
-
-_URL Params_
-```
-id: integer [required]
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200 - OK)_
-```
-{
-    "message": "Western Foods success to delete"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "error not found"
+    "message": "Data not found"
 }
 ```
 ---
@@ -377,6 +454,13 @@ _Response (200 - OK)_
     "updatedAt": "date"
 }
 ```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Cuisine not found"
+}
+```
 ---
 ### POST /cuisines
 
@@ -418,7 +502,6 @@ _Response (201 - Created)_
     "price": integer,
     "imgUrl": "string",
     "categoryId": integer,
-    "authorId": integer,
     "createdAt": "date",
     "updatedAt": "date"
 }
@@ -468,7 +551,6 @@ _Request Body_
     "price": integer,
     "imgUrl": "string",
     "categoryId": integer,
-    "authorId": integer
 }
 ```
 
@@ -504,7 +586,7 @@ _Response (400 - Bad Request)_
 _Response (404 - Not Found)_
 ```
 {
-    "message": "error not found"
+    "message": "Data not found"
 }
 ```
 ---
@@ -535,23 +617,20 @@ not needed
 _Response (200 - OK)_
 ```
 {
-    "message": "Sempol Ayam success to delete"
+    "message": "<entity name> success to delete"
 }
 ```
 
 _Response (404 - Not Found)_
 ```
 {
-    "message": "error not found"
+    "message": "Data not found"
 }
 ```
 ---
+### PATCH /cuisines/:id/image-url
 
-## Users
-
-### POST /add-users
-
-> Register new user
+> Edit imageUrl of Cuisine by id
 
 _Request Header_
 ```
@@ -560,7 +639,7 @@ _Request Header_
 
 _URL Params_
 ```
-not needed
+id: integer [required]
 ```
 
 _Data Params_
@@ -571,96 +650,33 @@ not needed
 _Request Body_
 ```
 {
-    "username": "string",
-    "email": "string",
-    "password": "string",
-    "phoneNumber": "string",
-    "address": "string"
-}
-```
-
-_Response (201 - Created)_
-```
-{
-    "id": integer,
-    "username": "string",
-    "email": "string"
-}
-```
-
-_Response (400 - Bad Request)_
-```
-{
-    "message": "Email cannot be Empty!"
-        OR
-    "message": "Email should be written in email format!"
-        OR
-    "message": "Password cannot be Empty!"
-        OR
-    "message": "Minimum password length is 5"
-}
-```
----
-### POST /login
-
-> User login
-
-_Request Header_
-```
-not needed
-```
-
-_URL Params_
-```
-not needed
-```
-
-_Data Params_
-```
-not needed
-```
-
-_Request Body_
-```
-{
-    "email": "string",
-    "password": "string"
+    "image": "string"
 }
 ```
 
 _Response (200 - OK)_
 ```
 {
-    "access_token": "string"
+    "message": "Image <entity name> by staff success to update"
 }
 ```
 
 _Response (400 - Bad Request)_
 ```
 {
-    "message": "Email is missing"
-        OR
-    "message": "Password is missing"
-}
-```
-
-_Response (401 - Unauthorized)_
-```
-{
-    "message": "error invalid email or password"
-}
-```
----
-### Global Error
-
-_Response (400 - Bad Request)_
-```
-{
-    "message": "string"
-        OR
     "message": "File is required"
 }
 ```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "Data not found"
+}
+```
+
+---
+### Global Error
 
 _Response (401 - Unauthorized)_
 ```
@@ -673,13 +689,6 @@ _Response (403 - Forbidden)_
 ```
 {
     "message": "You are not authorized"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "Data not found"
 }
 ```
 

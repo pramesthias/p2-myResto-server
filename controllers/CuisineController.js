@@ -33,7 +33,7 @@ module.exports = class CuisineController {
             const cuisine = await Cuisine.findByPk(req.params.id);
 
             if(!cuisine){
-                next({name: 'NotFound'});
+                next({name: 'NotFound', message: "Cuisine not found"});
                 return;
             }
 
@@ -59,7 +59,7 @@ module.exports = class CuisineController {
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
             await cuisine.update(req.body);
-            res.status(200).json(req.body);
+            res.status(200).json({...req.body, authorId: req.user.id});
         } catch (error) {
             next(error);
         }
@@ -84,7 +84,7 @@ module.exports = class CuisineController {
             const cuisine = await Cuisine.findByPk(req.params.id);
 
             if(!cuisine) {
-                next({name: 'NotFound', message: "error not found"});
+                next({name: 'NotFound'});
                 return;
             } 
 
@@ -106,9 +106,8 @@ module.exports = class CuisineController {
 
             console.log(data)
             res.status(200).json({message: `Image ${cuisine.name} success to update`})
-            // next();
+            next();
         } catch (error) {
-            console.log(error)
             next(error);
         }
     }

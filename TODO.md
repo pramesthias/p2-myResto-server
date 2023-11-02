@@ -148,10 +148,11 @@ Target:
 Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 
 - [ ] Login (Admin), perlu melakukan pengecekan pada status dan response ketika:
+  - [x] Berhasil login dan mengirimkan access token
   - [ ] Email tidak diberikan / tidak diinput
   - [ ] Password tidak diberikan / tidak diinput
-  - [ ] Email diberikan invalid / tidak terdaftar
-  - [ ] Password diberikan salah / tidak match
+  - [x] Email diberikan invalid / tidak terdaftar
+  - [x] Password diberikan salah / tidak match
   - Pastikan untuk testing ini sediakan dulu data Admin
 
 - [ ] Add Staff, perlu melakukan pengecekan pada status dan response ketika:

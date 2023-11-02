@@ -5,7 +5,7 @@ const {User} = require("../models");
 module.exports = class UserController {
 
     static async registerUser(req, res, next){
-        try {
+        try {   //req.body
             const {username, email, password, phoneNumber, address} = req.body
             const user = await User.create({username, email, password, phoneNumber, address});
 
@@ -24,26 +24,27 @@ module.exports = class UserController {
         try {
             const {email, password} = req.body;
 
-            if(!email) {
-                res.status(400).json({message: "Email is missing"});
+            if(!email) {    // BENAR 400
+                res.status(400).json({message: "error invalid email or password"}); //password missing
                 return; 
             }
             
             if(!password) {
-                res.status(400).json({message: "Password is missing"});
+                res.status(400).json({message: "error invalid email or password"});
                 return; 
             }
 
+            // ganti jadi 401
             const user = await User.findOne({ where: {email} }); 
             if(!user){
-                next({name: 'NotFound', message: "user not found"});
+                next({name: 'NotFound', message: "user not found or password not matched"});
                 return;
             }
 
             if(user.role === "Staff"){ 
             const isValidPassword = comparePassword(password, user.password);
             if(!isValidPassword){
-                next({name: 'NotFound', message: "password not matched"});
+                next({name: 'NotFound', message: "user not found or password not matched"});
                 return;
             }
         }

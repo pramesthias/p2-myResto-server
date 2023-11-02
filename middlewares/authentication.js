@@ -6,13 +6,13 @@ async function authentication(req, res, next){
     try {
         let access_token = req.headers.authorization
 
-        if(!access_token) throw {name: "Unauthenticated"}
+        if(!access_token) throw {name: "Unauthenticated"}   //AA 401
 
         const { id } = verifyToken(access_token.replace("Bearer ", ""))
 
         let user = await User.findByPk(id)
 
-        if(!user) throw {name: "Unauthenticated"}
+        if(!user) throw {name: "Unauthenticated"}   //AA 401
 
         req.user = {
             id: user.id,
