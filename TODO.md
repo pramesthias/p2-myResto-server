@@ -175,7 +175,7 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
 
 - [ ] Read, perlu melakukan pengecekan pada status dan response ketika:
   - [x] Berhasil mendapatkan data Entitas Utama
-  - [ ] Gagal menjalankan fitur karena belum login
+  - [x] Gagal menjalankan fitur karena belum login
   - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid
 
 - [ ] Read Detail, perlu melakukan pengecekan pada status dan response ketika:

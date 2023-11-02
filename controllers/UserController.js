@@ -37,14 +37,14 @@ module.exports = class UserController {
             // ganti jadi 401
             const user = await User.findOne({ where: {email} }); 
             if(!user){
-                next({name: 'NotFound', message: "user not found or password not matched"});
+                next({name: 'Unauthenticated', message: "user not found or password not matched"});
                 return;
             }
 
             if(user.role === "Staff"){ 
             const isValidPassword = comparePassword(password, user.password);
             if(!isValidPassword){
-                next({name: 'NotFound', message: "user not found or password not matched"});
+                next({name: 'Unauthenticated', message: "user not found or password not matched"});
                 return;
             }
         }

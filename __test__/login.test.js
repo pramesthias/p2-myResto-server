@@ -8,7 +8,7 @@ const user1 = {
     password: "12345" 
 }
 
-const user2 = {
+const user2 = { //NOT REGISTERED
     email: "staff2@how.com",
     password: "12345"
 }
@@ -45,22 +45,56 @@ describe("/login", () => {
     })
 
 
-    //[ ] Email diberikan invalid / tidak terdaftar
-    test("failed login with unregistered user", async () => {
+    //Email tidak diberikan / tidak diinput
+    test("failed login without email", async () => {
+        let {status, body} = await request(app)
+            .post("/login")
+            .send({
+                email: "",
+                password: "12345678" 
+            });  
+
+        console.log(status, body);
+        expect(status).toBe(400);
+        expect(body).toBeInstanceOf(Object);
+        expect(body).toHaveProperty("message", expect.any(String));
+        expect(body.message).toContain("error invalid email or password");
+    })
+
+
+    //Password tidak diberikan / tidak diinput
+    test("failed login without password", async () => {
+        let {status, body} = await request(app)
+            .post("/login")
+            .send({
+                email: "admin@email.com",
+                password: "" 
+            });  
+
+        console.log(status, body);
+        expect(status).toBe(400);
+        expect(body).toBeInstanceOf(Object);
+        expect(body).toHaveProperty("message", expect.any(String));
+        expect(body.message).toContain("error invalid email or password");
+    })
+
+
+    // Email diberikan invalid / tidak terdaftar
+    test("failed login with invalid email", async () => {
         let {status, body} = await request(app)
             .post("/login")
             .send(user2);   // not registered yet
 
         console.log(status, body);
-        expect(status).toBe(404);
+        expect(status).toBe(401);
         expect(body).toBeInstanceOf(Object);
         expect(body).toHaveProperty("message", expect.any(String));
-        expect(body.message).toContain("user not found");
+        expect(body.message).toContain("user not found or password not matched");
     })
     
     
     // Password diberikan salah / tidak match
-    test("failed login with not matche password", async () => {
+    test("failed login with invalid password", async () => {
         let {status, body} = await request(app)
             .post("/login")
             .send({
@@ -69,10 +103,10 @@ describe("/login", () => {
             });
 
         console.log(status, body);
-        expect(status).toBe(404);
+        expect(status).toBe(401);
         expect(body).toBeInstanceOf(Object);
         expect(body).toHaveProperty("message", expect.any(String));
-        expect(body.message).toContain("password not matched");
+        expect(body.message).toContain("user not found or password not matched");
     })
 
 

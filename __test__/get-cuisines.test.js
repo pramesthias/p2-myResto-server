@@ -25,7 +25,7 @@ let seed_category2 = { name: "Traditional Foods"};
 
 
 let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC9.eyJpZCI6MSwiaWF0IjoxNjk4ODI1MDc0Q.A85Qn24V-jNwPqbc1VuFAuvgwPXFhcpVAClS0J78OS"
-let token
+let token;
 
 beforeAll(async () => {
     let user1 = await User.create(seed_user1); //registered
