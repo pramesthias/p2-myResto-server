@@ -27,9 +27,8 @@ let seed_category = { name: "Western Cuisine" };
 let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC9.eyJpZCI6MSwiaWF0IjoxNjk4ODI1MDc0Q.A85Qn24V-jNwPqbc1VuFAuvgwPXFhcpVAClS0J78OS"
 let tokenAdm;
 let admin; 
-
-// let tokenStf;
-// let staff;
+let tokenStf;
+let staff;
 
 beforeAll(async () => {
     admin = await User.create(user1); 
@@ -44,7 +43,7 @@ beforeAll(async () => {
 
     await queryInterface.bulkInsert('Cuisines', [
         {
-            "name": "Pizza",
+            name: "Pizza",
             "description": "Pizza is from Italy",
             "price": 50000,
             "imgUrl": "https://asset.kompas.com/crops/J-BSOZ4kJgmEYryOU3GqKlU23g4=/0x0:1000x667/750x500/data/photo/2020/08/01/5f24e8ed0cbc9.jpg",
@@ -62,39 +61,42 @@ beforeAll(async () => {
             "updatedAt": dateNow,
             "categoryId": category.id,
             "authorId": staff.id
+        },
+        {
+            "name": "Sushi",
+            "description": "Sushi is from Japan",
+            "price": 50000,
+            "imgUrl": "https://asset.kompas.com/crops/J-BSOZ4kJgmEYryOU3GqKlU23g4=/0x0:1000x667/750x500/data/photo/2020/08/01/5f24e8ed0cbc9.jpg",
+            "createdAt": dateNow,
+            "updatedAt": dateNow,
+            "categoryId": category.id,
+            "authorId": admin.id
         }
     ])
 
 })
 
-const cuisineId = 1;
+let cuisineId = 1;
 
 describe("/cuisines/:id", () => {
 
-    //Berhasil mendapatkan 1  Entitas Utama sesuai dengan params id yang diberikan
-    test.only("success delete one cuisine by id (200)", async () => {
-        // const cuisineId = 1;
+    //Berhasil menghapus data Entitas Utama berdasarkan params id yang diberikan
+    test("success delete one cuisine by id (200)", async () => {
         let {status, body} = await request(app)
-            .get(`/cuisines/${cuisineId}`)
+            .delete(`/cuisines/${cuisineId}`)
             .set("Authorization", `Bearer ${tokenAdm}`)
 
         expect(status).toBe(200);
         expect(body).toBeInstanceOf(Object);
-        expect(body).toHaveProperty("id", expect("id").toBe(`${cuisineId}`));    
-        expect(body).toHaveProperty("name", expect.any(String));   
-        expect(body).toHaveProperty("description", expect.any(String));
-        expect(body).toHaveProperty("price", expect.any(Number));   
-        expect(body).toHaveProperty("imgUrl", expect.any(String)); 
-        expect(body).toHaveProperty("categoryId", expect.any(Number));   
-        expect(body).toHaveProperty("authorId", expect.any(Number));
+        expect(body).toHaveProperty("message", expect.any(String));
+        expect(body.message).toContain("Pizza success to delete");
     })
 
 
     // Gagal menjalankan fitur karena belum login 
     test("failed delete cuisine because not login yet (401)", async () => {
-        const cuisineId = 1;
         let {status, body} = await request(app)
-            .get(`/cuisines/${cuisineId}`)
+            .delete(`/cuisines/${cuisineId}`)
 
             expect(status).toBe(401);
             expect(body).toBeInstanceOf(Object);
@@ -106,7 +108,7 @@ describe("/cuisines/:id", () => {
     // Gagal menjalankan fitur karena token yang diberikan tidak valid
     test("failed delete cuisine with invalid token (401)", async () => {
         let {status, body} = await request(app)
-            .get("/cuisines")
+            .delete(`/cuisines/${cuisineId}`)
             .set("Authorization", `Bearer ${invalidToken}`)
 
             expect(status).toBe(401);
@@ -117,9 +119,10 @@ describe("/cuisines/:id", () => {
 
 
     // Gagal karena id entity yang dikirim tidak terdapat di database
-    test("failed delete cuisine with invalid token (401)", async () => {
+    test("failed delete cuisine with invalid id (401)", async () => {
+        const invalidId = 7;
         let {status, body} = await request(app)
-            .get("/cuisines")
+            .delete(`/cuisines/${invalidId}`)
             .set("Authorization", `Bearer ${invalidToken}`)
 
             expect(status).toBe(401);
@@ -128,23 +131,37 @@ describe("/cuisines/:id", () => {
             expect(body.message).toContain("invalid token");
     })
 
+
     // Gagal menjalankan fitur ketika Staff menghapus entity yang bukan miliknya
     // authorization ADMIN, ID NE GONE STAFF
-    test("failed delete cuisine with invalid token (401)", async () => {
+    test("failed to delete admin's cuisine by staff (403)", async () => {
+        cuisineId = 3;
         let {status, body} = await request(app)
-            .get("/cuisines")
-            .set("Authorization", `Bearer ${invalidToken}`)
+            .delete(`/cuisines/${cuisineId}`)
+            .set("Authorization", `Bearer ${tokenStf}`)
 
-            expect(status).toBe(401);
+            expect(status).toBe(403);
             expect(body).toBeInstanceOf(Object);
             expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("invalid token");
+            expect(body.message).toContain("You are not authorized");
     })
 
 })
 
 
 afterAll(async () => {
+    await queryInterface.bulkDelete("Cuisines",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
+    await queryInterface.bulkDelete("Categories",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
     await queryInterface.bulkDelete("Users",null, {
         truncate: true,
         cascade: true,

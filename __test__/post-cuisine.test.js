@@ -14,13 +14,13 @@ const user1 = {
     address: "Gang Jambu"
 }
 
-const user2 = {
-    username: "string",
-    email: "staff@email.com",
-    password: "12345",
-    phoneNumber: "087968012",
-    address: "Gang Jambu"
-}
+// const user2 = {
+//     username: "string",
+//     email: "staff@email.com",
+//     password: "12345",
+//     phoneNumber: "087968012",
+//     address: "Gang Jambu"
+// }
 
 let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC9.eyJpZCI6MSwiaWF0IjoxNjk4ODI1MDc0Q.A85Qn24V-jNwPqbc1VuFAuvgwPXFhcpVAClS0J78OS"
 let admin;
@@ -126,9 +126,16 @@ describe("/cuisines", () => {
 
 
 afterAll(async () => {
+    await queryInterface.bulkDelete("Cuisines",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
     await queryInterface.bulkDelete("Users",null, {
         truncate: true,
         cascade: true,
         restartIdentity: true
     })
+
 })

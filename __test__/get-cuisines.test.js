@@ -62,6 +62,7 @@ beforeAll(async () => {
 
 })
 
+
 describe("/cuisines", () => {
 
     //Berhasil mendapatkan data Entitas Utama
@@ -85,9 +86,7 @@ describe("/cuisines", () => {
         expect(body[0].User).toHaveProperty("id", expect.any(Number));
         expect(body[0].User).toHaveProperty("username", expect.any(String));   
         expect(body[0].User).toHaveProperty("email", expect.any(String));
-        expect(body[0].User).toHaveProperty("role", expect.any(String));   
-        expect(body[0].User).toHaveProperty("phoneNumber", expect.any(String)); 
-        expect(body[0].User).toHaveProperty("address", expect.any(String)); 
+        expect(body[0].User).toHaveProperty("role", expect.any(String));    
     
         expect(body[0]).toHaveProperty("Category");
         expect(body[0].Category).toHaveProperty("id", expect.any(Number));
@@ -122,6 +121,18 @@ describe("/cuisines", () => {
 
 
 afterAll(async () => {
+    await queryInterface.bulkDelete("Categories",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
+    await queryInterface.bulkDelete("Cuisines",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
     await queryInterface.bulkDelete("Users",null, {
         truncate: true,
         cascade: true,

@@ -131,7 +131,7 @@ describe("/cuisines/:id", () => {
 
 
 afterAll(async () => {
-    await queryInterface.bulkDelete("Users",null, {
+    await queryInterface.bulkDelete("Cuisines",null, {
         truncate: true,
         cascade: true,
         restartIdentity: true

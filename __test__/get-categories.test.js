@@ -49,6 +49,7 @@ beforeAll(async () => {
 
 })
 
+
 describe("/categories", () => {
 
     //Berhasil mendapatkan data entitas kedua
@@ -92,9 +93,16 @@ describe("/categories", () => {
 
 
 afterAll(async () => {
+    await queryInterface.bulkDelete("Categories",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
     await queryInterface.bulkDelete("Users",null, {
         truncate: true,
         cascade: true,
         restartIdentity: true
     })
+
 })

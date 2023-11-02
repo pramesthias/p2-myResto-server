@@ -13,15 +13,6 @@ const user2 = { //NOT REGISTERED
     password: "12345"
 }
 
-/*
-Berhasil login dan diberikan access token
-[ ] Email tidak diberikan / tidak diinput
-[ ] Password tidak diberikan / tidak diinput
-[ ] Email diberikan invalid / tidak terdaftar
-[ ] Password diberikan salah / tidak match
-Pastikan untuk testing ini sediakan dulu data Admin
-*/
-
 
 beforeAll(async () => {
     await User.create(user1); //registered
