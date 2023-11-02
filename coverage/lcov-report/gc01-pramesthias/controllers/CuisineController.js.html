@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.02% </span>
+                <span class="strong">23.4% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/47</span>
+                <span class='fraction'>11/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.02% </span>
+                <span class="strong">23.4% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/47</span>
+                <span class='fraction'>11/47</span>
             </div>
         
             
@@ -206,28 +206,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -317,29 +317,29 @@ module.exports = class CuisineController {
     }
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async getCuisine(req, res, next){
-<span class="cstat-no" title="statement not covered" >        try {</span>
-            const cuisine = <span class="cstat-no" title="statement not covered" >await Cuisine.findByPk(req.params.id);</span>
+    static async getCuisine(req, res, next){
+        try {
+            const cuisine = await Cuisine.findByPk(req.params.id);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if(!cuisine){</span>
-<span class="cstat-no" title="statement not covered" >                next({name: 'NotFound', message: "Cuisine not found"});</span>
-<span class="cstat-no" title="statement not covered" >                return;</span>
+            if(!cuisine){
+                next({name: 'NotFound', message: "Cuisine not found"});
+                return;
             }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            res.status(200).json(cuisine);</span>
+            res.status(200).json(cuisine);
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            next(error);</span>
         }
     }
 &nbsp;
 &nbsp;
-    static async createCuisine(req, res, next){
-        try {
-            const cuisine = await Cuisine.create({...req.body, authorId: req.user.id});    //gaperlu kirim authorId karna ikutin access token
+<span class="fstat-no" title="function not covered" >    st</span>atic async createCuisine(req, res, next){
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const cuisine = <span class="cstat-no" title="statement not covered" >await Cuisine.create({...req.body, authorId: req.user.id});</span>    //gaperlu kirim authorId karna ikutin access token
 <span class="cstat-no" title="statement not covered" >            console.log({authorId: req.user.id})</span>
 <span class="cstat-no" title="statement not covered" >            res.status(201).json(cuisine);</span>
         } catch (error) {
-            next(error);
+<span class="cstat-no" title="statement not covered" >            next(error);</span>
         }
     }
 &nbsp;
@@ -406,7 +406,7 @@ module.exports = class CuisineController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-02T10:06:15.912Z
+                at 2023-11-02T11:42:35.779Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

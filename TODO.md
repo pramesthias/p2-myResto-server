@@ -166,11 +166,11 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [x] Gagal register staff karena admin belum login
   - [x] Gagal register staff karena token yang diberikan tidak valid (random string)
 
-- [ ] Create, perlu melakukan pengecekan pada status dan response ketika:
+- [x] Create, perlu melakukan pengecekan pada status dan response ketika:
   - [x] Berhasil membuat entitas utama
   - [x] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid  
-  - [ ] Gagal ketika request body tidak sesuai (validation required)
+  - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid  
+  - [x] Gagal ketika request body tidak sesuai (validation required)
   - Buatlah testing untuk masing-masing fitur
 
 - [x] Read, perlu melakukan pengecekan pada status dan response ketika:
@@ -178,11 +178,11 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [x] Gagal menjalankan fitur karena belum login
   - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid
 
-- [ ] Read Detail, perlu melakukan pengecekan pada status dan response ketika:
-  - [ ] Berhasil mendapatkan 1  Entitas Utama sesuai dengan params id yang diberikan
-  - [ ] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-  - [ ] Gagal mendapatkan Entitas Utama karena params id yang diberikan tidak ada di database / invalid
+- [x] Read Detail, perlu melakukan pengecekan pada status dan response ketika:
+  - [x] Berhasil mendapatkan 1  Entitas Utama sesuai dengan params id yang diberikan
+  - [x] Gagal menjalankan fitur karena belum login
+  - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid
+  - [x] Gagal mendapatkan Entitas Utama karena params id yang diberikan tidak ada di database / invalid
 
 - [ ] Update PUT, perlu melakukan pengecekan pada status dan response ketika:
   - [ ] Berhasil mengupdate data Entitas Utama berdasarkan params id yang diberikan
