@@ -103,7 +103,7 @@ describe("/cuisines", () => {
             expect(status).toBe(401);
             expect(body).toBeInstanceOf(Object);
             expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("invalid token");
+            expect(body.message).toContain("Unauthenticated");
     })    
     
 
@@ -116,7 +116,7 @@ describe("/cuisines", () => {
             expect(status).toBe(401);
             expect(body).toBeInstanceOf(Object);
             expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("Unauthenticated");
+            expect(body.message).toContain("invalid token");
     })
 })
 

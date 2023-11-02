@@ -4,19 +4,6 @@ const { sequelize, User } = require("../models");
 const { signToken } = require('../helpers/jwt');
 const { queryInterface } = sequelize;
 
-
-/*
-[x] Request Headers: { Authorization: "Bearer [your access token]" }
-[x] Request body: { email, password }
-[x] Response:
-[x] 201: { id, email }
-[x] 400: { errors }
-*/
-// const user1 = {
-//     email: "adm@hoo.com",
-//     password: "12345" 
-// }
-
 let seed_user1 = {
     username: "string",
     email: "admin@email.com",
