@@ -22,23 +22,12 @@ let user2 = {
 }
 
 let seed_category = { name: "Western Cuisine" };
-// let seed_category2 = { name: "Traditional Foods"};
-
-let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC9.eyJpZCI6MSwiaWF0IjoxNjk4ODI1MDc0Q.A85Qn24V-jNwPqbc1VuFAuvgwPXFhcpVAClS0J78OS"
-let tokenAdm;
-let admin; 
-
-// let tokenStf;
-// let staff;
 
 beforeAll(async () => {
     admin = await User.create(user1); 
     staff = await User.create(user2); 
-    tokenAdm = signToken({id: admin.id});
-    tokenStf = signToken({id: staff.id});
 
     let category = await Category.create(seed_category); 
-    // let category2 = await Category.create(seed_category2); 
 
     const dateNow = new Date();
 
@@ -68,20 +57,19 @@ beforeAll(async () => {
 })
 
 
-const validId = 1;
+const cuisineId = 2;
 
-describe("/cuisines/:id", () => {
+describe("/pub/cuisines/:id", () => {
 
     //Berhasil mendapatkan 1  Entitas Utama sesuai dengan params id yang diberikan
     test("success get one cuisine by id (200)", async () => {
         let {status, body} = await request(app)
-            .get(`/cuisines/${validId}`)
-            .set("Authorization", `Bearer ${tokenAdm}`)
+            .get(`/pub/cuisines/${cuisineId}`)
 
         expect(status).toBe(200);
         expect(body).toBeInstanceOf(Object);
         expect(body).toHaveProperty("id");
-        expect(body.id).toBe(validId);    
+        expect(body.id).toBe(cuisineId);    
         expect(body).toHaveProperty("name", expect.any(String));   
         expect(body).toHaveProperty("description", expect.any(String));
         expect(body).toHaveProperty("price", expect.any(Number));   
@@ -91,43 +79,19 @@ describe("/cuisines/:id", () => {
     })
 
 
-    // Gagal menjalankan fitur karena belum login 
-    test("failed get one cuisine because not login yet (401)", async () => {
-        let {status, body} = await request(app)
-            .get(`/cuisines/${validId}`)
-
-            expect(status).toBe(401);
-            expect(body).toBeInstanceOf(Object);
-            expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("Unauthenticated");
-    })    
-    
-
-    // Gagal menjalankan fitur karena token yang diberikan tidak valid
-    test("failed get one cuisine with invalid token (401)", async () => {
-        let {status, body} = await request(app)
-            .get(`/cuisines/${validId}`)
-            .set("Authorization", `Bearer ${invalidToken}`)
-
-            expect(status).toBe(401);
-            expect(body).toBeInstanceOf(Object);
-            expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("invalid token");
-    })
-
     // Gagal mendapatkan Entitas Utama karena params id yang diberikan tidak ada di database / invalid
     test("failed get cuisine with invalid id (404)", async () => {
-        const invalidId = 5;
+        const invalidId = 7;
         let {status, body} = await request(app)
-            .get(`/cuisines/${invalidId}`)
-            .set("Authorization", `Bearer ${tokenAdm}`)
+            .get(`/pub/cuisines/${invalidId}`)
 
-            expect(status).toBe(404);
-            expect(body).toBeInstanceOf(Object);
-            expect(body).toHaveProperty("message", expect.any(String));
-            expect(body.message).toContain("Cuisine not found");
+        expect(status).toBe(404);
+        expect(body).toBeInstanceOf(Object);
+        expect(body).toHaveProperty("message", expect.any(String));
+        expect(body.message).toContain("Cuisine not found");
     })
 })
+
 
 
 afterAll(async () => {
