@@ -167,13 +167,13 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [x] Gagal register staff karena token yang diberikan tidak valid (random string)
 
 - [ ] Create, perlu melakukan pengecekan pada status dan response ketika:
-  - [ ] Berhasil membuat entitas utama
-  - [ ] Gagal menjalankan fitur karena belum login
+  - [x] Berhasil membuat entitas utama
+  - [x] Gagal menjalankan fitur karena belum login
   - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid  
   - [ ] Gagal ketika request body tidak sesuai (validation required)
   - Buatlah testing untuk masing-masing fitur
 
-- [ ] Read, perlu melakukan pengecekan pada status dan response ketika:
+- [x] Read, perlu melakukan pengecekan pada status dan response ketika:
   - [x] Berhasil mendapatkan data Entitas Utama
   - [x] Gagal menjalankan fitur karena belum login
   - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid
@@ -207,10 +207,10 @@ Mengimplementasikan testing terhadap endpoint yang sudah dibuat
   - [ ] Gagal menjalankan fitur ketika Staff mengolah data entity yang bukan miliknya
   - [ ] Gagal ketika request body yang diberikan tidak sesuai
 
-- [ ] Read  Entitas kedua data genres/categories/types  perlu melakukan pengecekan pada status dan response ketika:
-  - [ ] Berhasil mendapatkan data entitas kedua
-  - [ ] Gagal menjalankan fitur karena belum login
-  - [ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
+- [x] Read  Entitas kedua data genres/categories/types  perlu melakukan pengecekan pada status dan response ketika:
+  - [x] Berhasil mendapatkan data entitas kedua
+  - [x] Gagal menjalankan fitur karena belum login
+  - [x] Gagal menjalankan fitur karena token yang diberikan tidak valid
 
 - [ ] Endpoint  List pada public site,  perlu melakukan pengecekan pada status dan response ketika:
   - [ ] Berhasil mendapatkan Entitas Utama tanpa menggunakan query filter parameter

@@ -27,8 +27,9 @@ let token;
 
 beforeAll(async () => {
     let admin = await User.create(user1);
-    // let staff = await User.create(user2);
     token = signToken({id: admin.id});
+    
+    // let staff = await User.create(user2);
     // tokenStaff = signToken({id: staff.id});
     
     const dateNow = new Date();

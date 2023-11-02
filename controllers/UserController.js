@@ -41,12 +41,12 @@ module.exports = class UserController {
                 return;
             }
 
-            if(user.role === "Staff"){ 
+            // REVISED
             const isValidPassword = comparePassword(password, user.password);
             if(!isValidPassword){
                 next({name: 'Unauthenticated', message: "user not found or password not matched"});
                 return;
-            }
+
         }
 
             const access_token = signToken({ id: user.id });

@@ -6,11 +6,8 @@ async function cuisineAuthorization(req, res, next) {
 
         if(!cuisine) throw ({name: "NotFound"})
 
-        if(req.user.role === "Admin"){
-           return next();
-        } 
-
-        if (cuisine.authorId !== req.user.id){
+        // REVISED
+        if(req.user.role !== "Admin" && cuisine.authorId !== req.user.id){
             throw {name: "Forbidden"}
         }
 

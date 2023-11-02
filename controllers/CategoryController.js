@@ -26,7 +26,7 @@ module.exports = class CategoryController {
             let category = await Category.findByPk(req.params.id);
             // if(!category) throw ({name: "NotFound"});
             await category.update(req.body);
-            res.status(200).json(req.body);
+            res.status(200).json(category); //REVISED
         } catch (error) {
             next(error);
         }

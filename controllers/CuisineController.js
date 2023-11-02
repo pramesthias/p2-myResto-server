@@ -6,8 +6,8 @@ const { randomUUID } = require('crypto');
 
 cloudinary.config({ 
   cloud_name: 'dfyn5hmau', 
-  api_key: '675134913794287', 
-  api_secret: 'SvzDgHcC2OALsrQWGU3uCLAdVxs' 
+  api_key: process.env.api_key,     //REVISED
+  api_secret: process.env.api_secret    //REVISED
 });
 
 module.exports = class CuisineController {
@@ -17,7 +17,7 @@ module.exports = class CuisineController {
             const cuisines = await Cuisine.findAll({
                 include: [{
                     model: User,
-                    attributes: {exclude: ['password']},
+                    attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
                 },
                 { model: Category }]
             });
@@ -58,13 +58,12 @@ module.exports = class CuisineController {
     static async editCuisine(req, res, next){
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
-            await cuisine.update(req.body);
+            await cuisine.update(req.body, {returning: true});
             res.status(200).json({...req.body, authorId: req.user.id});
         } catch (error) {
             next(error);
         }
     }
-
 
     static async deleteCuisine(req, res, next){   //DELETE
         try {
