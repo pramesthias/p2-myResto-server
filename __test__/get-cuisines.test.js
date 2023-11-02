@@ -4,21 +4,20 @@ const { sequelize, User, Category } = require("../models");
 const { signToken } = require('../helpers/jwt');
 const { queryInterface } = sequelize;
 
-
-/*
-[ ] Berhasil mendapatkan data Entitas Utama
-[ ] Gagal menjalankan fitur karena belum login
-[ ] Gagal menjalankan fitur karena token yang diberikan tidak valid
-*/
-
 let seed_user1 = {
+    username: "string",
     email: "admin@email.com",
-    password: "12345" 
+    password: "12345",
+    phoneNumber: "087968012",
+    address: "Gang Jambu"
 }
 
 let seed_user2 = {
+    username: "string",
     email: "staff2@how.com",
-    password: "12345"
+    password: "12345",
+    phoneNumber: "087968012",
+    address: "Gang Jambu"
 }
 
 let seed_category1 = { name: "Western Cuisine" };
@@ -90,44 +89,35 @@ describe("/cuisines", () => {
         expect(body[0].User).toHaveProperty("phoneNumber", expect.any(String)); 
         expect(body[0].User).toHaveProperty("address", expect.any(String)); 
     
-
-        expect(body[0].User).toHaveProperty("Category");
-        expect(body[0].User.Category).toHaveProperty("id", expect.any(Number));
-        expect(body[0].User.Category).toHaveProperty("name", expect.any(String));
+        expect(body[0]).toHaveProperty("Category");
+        expect(body[0].Category).toHaveProperty("id", expect.any(Number));
+        expect(body[0].Category).toHaveProperty("name", expect.any(String));
     })
 
-    // Gagal menjalankan fitur karena token yang diberikan tidak valid
-//     test("failed get all cuisines with invalid token (401)", async () => {
-//         let {status, body} = await request(app)
-//             .get("/cuisines")
-//             .set("Authorization", `Bearer ${invalidToken}`)
 
-//         expect(status).toBe(401);
-//         expect(body).toBeInstanceOf(Array);
-//         expect(body[0]).toBeInstanceOf(Object);
-//         expect(body[0]).toHaveProperty("id", expect.any(Number));    
-//         expect(body[0]).toHaveProperty("name", expect.any(String));   
-//         expect(body[0]).toHaveProperty("description", expect.any(String));
-//         expect(body[0]).toHaveProperty("price", expect.any(Number));   
-//         expect(body[0]).toHaveProperty("imgUrl", expect.any(String)); 
-//         expect(body[0]).toHaveProperty("categoryId", expect.any(Number));   
-//         expect(body[0]).toHaveProperty("authorId", expect.any(Number));
+    // Gagal menjalankan fitur karena belum login 
+    test("failed get all cuisines because not login yet (401)", async () => {
+        let {status, body} = await request(app)
+            .get("/cuisines")
 
-//         expect(body[0]).toHaveProperty("User");
-//         expect(body[0].User).toHaveProperty("id", expect.any(Number));
-//         expect(body[0].User).toHaveProperty("username", expect.any(String));   
-//         expect(body[0].User).toHaveProperty("email", expect.any(String));
-//         expect(body[0].User).toHaveProperty("role", expect.any(String));   
-//         expect(body[0].User).toHaveProperty("phoneNumber", expect.any(String)); 
-//         expect(body[0].User).toHaveProperty("address", expect.any(String)); 
+            expect(status).toBe(401);
+            expect(body).toBeInstanceOf(Object);
+            expect(body).toHaveProperty("message", expect.any(String));
+            expect(body.message).toContain("invalid token");
+    })    
     
 
-//         expect(body[0].User).toHaveProperty("Category");
-//         expect(body[0].User.Category).toHaveProperty("id", expect.any(Number));
-//         expect(body[0].User.Category).toHaveProperty("name", expect.any(String));
-// })
+    // Gagal menjalankan fitur karena token yang diberikan tidak valid
+    test("failed get all cuisines with invalid token (401)", async () => {
+        let {status, body} = await request(app)
+            .get("/cuisines")
+            .set("Authorization", `Bearer ${invalidToken}`)
 
-
+            expect(status).toBe(401);
+            expect(body).toBeInstanceOf(Object);
+            expect(body).toHaveProperty("message", expect.any(String));
+            expect(body.message).toContain("Unauthenticated");
+    })
 })
 
 
