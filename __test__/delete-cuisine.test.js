@@ -41,9 +41,9 @@ beforeAll(async () => {
 
     const dateNow = new Date();
 
-    await queryInterface.bulkInsert('Cuisines', [
+    await queryInterface.bulkInsert('Cuisines', [   // insert pake date
         {
-            name: "Pizza",
+            "name": "Pizza",
             "description": "Pizza is from Italy",
             "price": 50000,
             "imgUrl": "https://asset.kompas.com/crops/J-BSOZ4kJgmEYryOU3GqKlU23g4=/0x0:1000x667/750x500/data/photo/2020/08/01/5f24e8ed0cbc9.jpg",
@@ -133,7 +133,6 @@ describe("/cuisines/:id", () => {
 
 
     // Gagal menjalankan fitur ketika Staff menghapus entity yang bukan miliknya
-    // authorization ADMIN, ID NE GONE STAFF
     test("failed to delete admin's cuisine by staff (403)", async () => {
         cuisineId = 3;
         let {status, body} = await request(app)

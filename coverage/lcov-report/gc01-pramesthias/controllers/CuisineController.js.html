@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.14% </span>
+                <span class="strong">22.91% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/47</span>
+                <span class='fraction'>11/48</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.14% </span>
+                <span class="strong">22.91% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/47</span>
+                <span class='fraction'>11/48</span>
             </div>
         
             
@@ -175,7 +175,8 @@
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,20 +234,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -344,21 +346,22 @@ module.exports = class CuisineController {
     }
 &nbsp;
     //gaperlu kirim authorId karna ikutin access token
-<span class="fstat-no" title="function not covered" >    st</span>atic async editCuisine(req, res, next){
-<span class="cstat-no" title="statement not covered" >        try {</span>
-            let cuisine = <span class="cstat-no" title="statement not covered" >await Cuisine.findByPk(req.params.id);</span>
-<span class="cstat-no" title="statement not covered" >            await cuisine.update(req.body, {returning: true});</span>
-<span class="cstat-no" title="statement not covered" >            res.status(200).json({...req.body, authorId: req.user.id});</span>
+    static async editCuisine(req, res, next){
+        try {
+            console.log(req.body)
+            let cuisine = await Cuisine.findByPk(req.params.id);
+            let update = await cuisine.update(req.body, {returning: true});
+            res.status(200).json(update);
         } catch (error) {
-<span class="cstat-no" title="statement not covered" >            next(error);</span>
+            next(error);
         }
     }
 &nbsp;
-    static async deleteCuisine(req, res, next){   //DELETE
-        try {
-            let cuisine = await Cuisine.findByPk(req.params.id);
-            await cuisine.destroy();
-            res.status(200).json({message: `${cuisine.name} success to delete`});
+<span class="fstat-no" title="function not covered" >    st</span>atic async deleteCuisine(req, res, next){   //DELETE
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            let cuisine = <span class="cstat-no" title="statement not covered" >await Cuisine.findByPk(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >            await cuisine.destroy();</span>
+<span class="cstat-no" title="statement not covered" >            res.status(200).json({message: `${cuisine.name} success to delete`});</span>
                 // res.status(204).end(); tidak ada response
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            next(error);</span>
@@ -406,7 +409,7 @@ module.exports = class CuisineController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-02T13:46:05.427Z
+                at 2023-11-02T14:37:15.221Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

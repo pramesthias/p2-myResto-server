@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/14</span>
+                <span class='fraction'>10/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/12</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/14</span>
+                <span class='fraction'>10/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,20 +96,7 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -118,6 +105,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,10 +128,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = function errorHandler(error, req, res, next) {
     
     switch (error.name) {
-<span class="branch-0 cbranch-no" title="branch not covered" >        case "SequelizeValidationError":</span>
-<span class="branch-1 cbranch-no" title="branch not covered" >        case "SequelizeUniqueConstraintError":</span>
-<span class="cstat-no" title="statement not covered" >            res.status(400).json({message: error.errors[0].message}); </span>
-<span class="cstat-no" title="statement not covered" >            break;</span>
+        case "SequelizeValidationError":
+        case "SequelizeUniqueConstraintError":
+            res.status(400).json({message: error.errors[0].message}); 
+            break;
             
 <span class="branch-2 cbranch-no" title="branch not covered" >        case "NoFileError":</span>
 <span class="cstat-no" title="statement not covered" >            res.status(400).json({message: "File is required!"}); </span>
@@ -146,9 +146,9 @@
             res.status(403).json({message: "You are not authorized"}); 
             break;
 &nbsp;
-<span class="branch-6 cbranch-no" title="branch not covered" >        case "NotFound":  </span>
-<span class="cstat-no" title="statement not covered" >            res.status(404).json({message: error.message ?? "Data not found"}); </span>//cusine -&gt; error
-<span class="cstat-no" title="statement not covered" >            break;</span>
+        case "NotFound":  
+            res.status(404).json({message: error.message ?? "Data not found"}); //cusine -&gt; error
+            break;
 &nbsp;
 &nbsp;
 <span class="branch-7 cbranch-no" title="branch not covered" >        default:</span>
@@ -163,7 +163,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-02T13:46:05.427Z
+                at 2023-11-02T14:37:15.221Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

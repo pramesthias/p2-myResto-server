@@ -57,9 +57,10 @@ module.exports = class CuisineController {
     //gaperlu kirim authorId karna ikutin access token
     static async editCuisine(req, res, next){
         try {
+            console.log(req.body)
             let cuisine = await Cuisine.findByPk(req.params.id);
-            await cuisine.update(req.body, {returning: true});
-            res.status(200).json({...req.body, authorId: req.user.id});
+            let update = await cuisine.update(req.body, {returning: true});
+            res.status(200).json(update);
         } catch (error) {
             next(error);
         }
