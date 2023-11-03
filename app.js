@@ -6,6 +6,7 @@ if(process.env.NODE_ENV !== "production"){
 const express = require('express');
 const app = express();
 
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true })); //false
 
