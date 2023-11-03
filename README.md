@@ -25,7 +25,12 @@ not needed
 
 _URL Params_
 ```
-not needed
+{
+  search: [string] (optional),
+  filter [category]: [integer] (optional),
+  sort: [integer] (optional),
+  page: [integer] (optional)
+}
 ```
 
 _Data Params_
@@ -52,20 +57,10 @@ _Response (200 - OK)_
         "createdAt": "date",
         "updatedAt": "date",
         "User": {
-            "id": integer,
             "username": "string",
-            "email": "string",
-            "role": "string",
-            "phoneNumber": "string",
-            "address": "string",
-            "createdAt": "date",
-            "updatedAt": "date"
         },
         "Category": {
-            "id": integer,
-            "name": "string",
-            "createdAt": "date",
-            "updatedAt": "date"
+            "name": "string"
         }
     },
     ...

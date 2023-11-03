@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">68.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/21</span>
+                <span class='fraction'>15/22</span>
             </div>
         
             
@@ -237,7 +237,8 @@
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
 <a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">11x</span>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
@@ -273,26 +274,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -303,7 +287,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -428,7 +430,7 @@ module.exports = class CuisineController {
 &nbsp;
     static async getPubCuisines(req, res, next) {
 &nbsp;
-        const { search, filter, sort, page = <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>} = req.query;
+        const { search, filter, sort, page } = req.query;   //page = 1 
 &nbsp;
         let limit = 10;
         let offset = (+page - 1) * limit;
@@ -442,14 +444,15 @@ module.exports = class CuisineController {
                 {
                     model: Category
                 }
-            ],
-            order: [['createdAt', 'asc']],
+            ]
         };
 &nbsp;
 &nbsp;
         // PAGINATION
-        paramQuerySQL.limit = limit;
-        paramQuerySQL.offset = offset;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(page){
+            paramQuerySQL.limit = limit;
+            paramQuerySQL.offset = offset;
+        }
 &nbsp;
 &nbsp;
         //SEARCH BY CUISINE NAME
@@ -464,9 +467,9 @@ module.exports = class CuisineController {
         // SORTING DATA TERBARU &amp; TERLAMA
         <span class="missing-if-branch" title="if path not taken" >I</span>if (sort !== '' &amp;&amp; typeof sort !== 'undefined') {
 <span class="cstat-no" title="statement not covered" >            if (sort.charAt(0) !== '-') {</span>
-<span class="cstat-no" title="statement not covered" >                paramQuerySQL.order.push([[sort, 'ASC']]);</span>
+<span class="cstat-no" title="statement not covered" >                paramQuerySQL.order = ([[sort, 'ASC']]);</span>
             } else {
-<span class="cstat-no" title="statement not covered" >                paramQuerySQL.order.push([[sort.replace('-', ''), 'DESC']]);</span>
+<span class="cstat-no" title="statement not covered" >                paramQuerySQL.order = ([[sort.replace('-', ''), 'DESC']]);</span>
             }
         }
 &nbsp;
@@ -477,7 +480,7 @@ module.exports = class CuisineController {
             };
         }
 &nbsp;
-        console.log(paramQuerySQL)
+        
         try {
             const cuisines = await Cuisine.findAll(paramQuerySQL);
             res.status(200).json(cuisines);
@@ -592,7 +595,7 @@ module.exports = class CuisineController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-03T09:24:38.099Z
+                at 2023-11-03T09:54:22.850Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

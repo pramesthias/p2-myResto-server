@@ -15,7 +15,7 @@ module.exports = class CuisineController {
 
     static async getPubCuisines(req, res, next) {
 
-        const { search, filter, sort, page = 1 } = req.query;
+        const { search, filter, sort, page = 1} = req.query; 
 
         let limit = 10;
         let offset = (+page - 1) * limit;
@@ -24,20 +24,16 @@ module.exports = class CuisineController {
             include: [
                 {
                     model: User,
-                    attributes: ['username'],  //REVISED
+                    attributes: ['username'] //REVISED
                 },
                 {
-                    model: Category
+                    model: Category,
+                    attributes: ['name']
                 }
             ],
-            order: [['createdAt', 'asc']],
+            limit,      //PAGINATION HERE
+            offset
         };
-
-
-        // PAGINATION
-        paramQuerySQL.limit = limit;
-        paramQuerySQL.offset = offset;
-
 
         //SEARCH BY CUISINE NAME
         if (search !== '' && typeof search !== 'undefined') {
@@ -51,9 +47,9 @@ module.exports = class CuisineController {
         // SORTING DATA TERBARU & TERLAMA
         if (sort !== '' && typeof sort !== 'undefined') {
             if (sort.charAt(0) !== '-') {
-                paramQuerySQL.order.push([[sort, 'ASC']]);
+                paramQuerySQL.order = [[sort, 'ASC']];
             } else {
-                paramQuerySQL.order.push([[sort.replace('-', ''), 'DESC']]);
+                paramQuerySQL.order = [[sort.replace('-', ''), 'DESC']];
             }
         }
 
@@ -63,8 +59,7 @@ module.exports = class CuisineController {
                 categoryId: { [Op.in]: [filter] },
             };
         }
-
-        console.log(paramQuerySQL)
+        
         try {
             const cuisines = await Cuisine.findAll(paramQuerySQL);
             res.status(200).json(cuisines);
@@ -77,11 +72,16 @@ module.exports = class CuisineController {
     static async getCuisines(req, res, next) {
         try {
             const cuisines = await Cuisine.findAll({
-                include: [{
-                    model: User,
-                    attributes: { exclude: ['password', 'phoneNumber', 'address'] },  //REVISED
-                },
-                { model: Category }]
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']    //REVISED
+                    },
+                    {
+                        model: Category,
+                        attributes: ['name']
+                    }
+                ],
             });
             res.status(200).json(cuisines);
         } catch (error) {
