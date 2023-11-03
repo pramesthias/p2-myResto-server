@@ -1,31 +1,43 @@
 const { Op } = require("sequelize");
-const {User, Category, Cuisine} = require("../models");
+const { User, Category, Cuisine } = require("../models");
 
 const cloudinary = require('cloudinary').v2;
-          
+
 const { randomUUID } = require('crypto');
 
-cloudinary.config({ 
-  cloud_name: 'dfyn5hmau', 
-  api_key: process.env.api_key,     //REVISED
-  api_secret: process.env.api_secret    //REVISED
+cloudinary.config({
+    cloud_name: 'dfyn5hmau',
+    api_key: process.env.api_key,     //REVISED
+    api_secret: process.env.api_secret    //REVISED
 });
 
 module.exports = class CuisineController {
 
-    static async getPubCuisines(req, res, next){
+    static async getPubCuisines(req, res, next) {
 
-        const { search, filter, sort, page } = req.query;
+        const { search, filter, sort, page = 1 } = req.query;
+
+        let limit = 10;
+        let offset = (+page - 1) * limit;
 
         let paramQuerySQL = {
-            include: [{
-                model: User,
-                attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
-            },
-            { model: Category }]
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],  //REVISED
+                },
+                {
+                    model: Category
+                }
+            ],
+            order: [['createdAt', 'asc']],
         };
-        let limit;
-        let offset;
+
+
+        // PAGINATION
+        paramQuerySQL.limit = limit;
+        paramQuerySQL.offset = offset;
+
 
         //SEARCH BY CUISINE NAME
         if (search !== '' && typeof search !== 'undefined') {
@@ -35,49 +47,26 @@ module.exports = class CuisineController {
                 }
             }
         }
-           
+
         // SORTING DATA TERBARU & TERLAMA
         if (sort !== '' && typeof sort !== 'undefined') {
             if (sort.charAt(0) !== '-') {
-                paramQuerySQL.order  = [[sort, 'createdAt', 'ASC']];
+                paramQuerySQL.order.push([[sort, 'ASC']]);
             } else {
-                paramQuerySQL.order  = [[sort.replace('-', ''), 'createdAt', 'DESC']];
+                paramQuerySQL.order.push([[sort.replace('-', ''), 'DESC']]);
             }
         }
 
-          if (filter !== '' && typeof filter !== 'undefined') {
-            const query = filter.category.split(',').map((item) => ({
-              [Op.eq]: item,
-            }));
-          
+        // FILTER ENTITAS CUISINE BASED ON CATEGORY
+        if (filter !== '' && typeof filter !== 'undefined') {
             paramQuerySQL.where = {
-                categoryId: { [Op.or]: query },
+                categoryId: { [Op.in]: [filter] },
             };
-          }
+        }
 
-
-        // PAGINATION
-          if (page !== '' && typeof page !== 'undefined') {
-            if (page.size !== '' && typeof page.size !== 'undefined') {
-              limit = page.size;
-              paramQuerySQL.limit = limit;
-            }
-          
-            if (page.number !== '' && typeof page.number !== 'undefined') {
-              offset = page.number * limit - limit;
-              paramQuerySQL.offset = offset;
-            }
-          } else {
-            limit = 10;
-            offset = 0; //(page - 1) * limit;
-            paramQuerySQL.limit = limit;
-            paramQuerySQL.offset = offset;
-          }
-          
-
-
+        console.log(paramQuerySQL)
         try {
-            const cuisines = await Cuisine.findAll(paramQuerySQL);
+            const cuisines = await Cuisine.findAndCountAll(paramQuerySQL);
             res.status(200).json(cuisines);
         } catch (error) {
             // next(error);
@@ -85,19 +74,19 @@ module.exports = class CuisineController {
         }
     }
 
-            // FILTER ENTITAS CUISINE BASED ON CATEGORY
-        //  if (filter !== '' && typeof filter !== 'undefined') {        
-        //     paramQuerySQL.where = {
-        //       categoryId: { [Op.iLike]: `%${filter}%` },
-        //     };
-        //   }
+
+    //  if (filter !== '' && typeof filter !== 'undefined') {        
+    //     paramQuerySQL.where = {
+    //       categoryId: { [Op.iLike]: `%${filter}%` },
+    //     };
+    //   }
 
 
     // try {
     //     const cuisines = await Cuisine.findAll({
     //         include: [{
     //             model: User,
-    //             attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
+    //             attributes: {exclude: ['username', 'phoneNumber', 'address']},  //REVISED
     //         },
     //         { model: Category }]
     //     });
@@ -105,28 +94,28 @@ module.exports = class CuisineController {
     // }
 
 
-    static async getCuisines(req, res, next){
+    static async getCuisines(req, res, next) {
         try {
             const cuisines = await Cuisine.findAll({
-                        include: [{
-                            model: User,
-                            attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
-                        },
-                        { model: Category }]
-                    });
-                    res.status(200).json(cuisines);
+                include: [{
+                    model: User,
+                    attributes: { exclude: ['password', 'phoneNumber', 'address'] },  //REVISED
+                },
+                { model: Category }]
+            });
+            res.status(200).json(cuisines);
         } catch (error) {
             next(error);
         }
     }
 
 
-    static async getCuisine(req, res, next){
+    static async getCuisine(req, res, next) {
         try {
             const cuisine = await Cuisine.findByPk(req.params.id);
 
-            if(!cuisine){
-                next({name: 'NotFound', message: "Cuisine not found"});
+            if (!cuisine) {
+                next({ name: 'NotFound', message: "Cuisine not found" });
                 return;
             }
 
@@ -137,10 +126,10 @@ module.exports = class CuisineController {
     }
 
 
-    static async createCuisine(req, res, next){
+    static async createCuisine(req, res, next) {
         try {
-            const cuisine = await Cuisine.create({...req.body, authorId: req.user.id});    //gaperlu kirim authorId karna ikutin access token
-            console.log({authorId: req.user.id})
+            const cuisine = await Cuisine.create({ ...req.body, authorId: req.user.id });    //gaperlu kirim authorId karna ikutin access token
+            console.log({ authorId: req.user.id })
             res.status(201).json(cuisine);
         } catch (error) {
             next(error);
@@ -148,57 +137,57 @@ module.exports = class CuisineController {
     }
 
     //gaperlu kirim authorId karna ikutin access token
-    static async editCuisine(req, res, next){
+    static async editCuisine(req, res, next) {
         try {
             console.log(req.body)
             let cuisine = await Cuisine.findByPk(req.params.id);
-            let update = await cuisine.update(req.body, {returning: true});
+            let update = await cuisine.update(req.body, { returning: true });
             res.status(200).json(update);
         } catch (error) {
             next(error);
         }
     }
 
-    static async deleteCuisine(req, res, next){   //DELETE
+    static async deleteCuisine(req, res, next) {   //DELETE
         try {
             let cuisine = await Cuisine.findByPk(req.params.id);
             await cuisine.destroy();
-            res.status(200).json({message: `${cuisine.name} success to delete`});
-                // res.status(204).end(); tidak ada response
+            res.status(200).json({ message: `${cuisine.name} success to delete` });
+            // res.status(204).end(); tidak ada response
         } catch (error) {
             next(error);
         }
     }
 
 
-    static async updateImageUrl(req, res, next){
+    static async updateImageUrl(req, res, next) {
         try {
 
             const cuisine = await Cuisine.findByPk(req.params.id);
 
-            if(!cuisine) {
-                next({name: 'NotFound'});
+            if (!cuisine) {
+                next({ name: 'NotFound' });
                 return;
-            } 
+            }
 
             // console.log(req.file, req.body);
-            if(!req.file){
-                next({name: 'NoFileError'});
+            if (!req.file) {
+                next({ name: 'NoFileError' });
                 return;
             }
 
             const base64File = Buffer.from(req.file.buffer).toString('base64');
 
             const dataURI = `data:${req.file.mimetype};base64,${base64File}`
-            const data = await cloudinary.uploader.upload(dataURI,{ 
+            const data = await cloudinary.uploader.upload(dataURI, {
                 public_id: `${req.file.originalname}_${randomUUID()}`,
                 folder: 'cuisines'
             });
 
-            await cuisine.update({imgUrl: data.secure_url});
+            await cuisine.update({ imgUrl: data.secure_url });
 
             console.log(data)
-            res.status(200).json({message: `Image ${cuisine.name} success to update`})
+            res.status(200).json({ message: `Image ${cuisine.name} success to update` })
             next();
         } catch (error) {
             next(error);
