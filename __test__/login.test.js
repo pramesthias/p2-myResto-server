@@ -20,7 +20,6 @@ beforeAll(async () => {
 
 describe("/login", () => {
 
-
     //Berhasil login dan diberikan access token
     test("success login and get access token", async () => {
         let {status, body} = await request(app)
@@ -100,10 +99,9 @@ describe("/login", () => {
         expect(body.message).toContain("user not found or password not matched");
     })
 
-
-
-
 })
+
+
 
 afterAll(async () => {
     await queryInterface.bulkDelete("Users",null, {

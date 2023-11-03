@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const {User, Category, Cuisine} = require("../models");
 
 const cloudinary = require('cloudinary').v2;
@@ -12,16 +13,108 @@ cloudinary.config({
 
 module.exports = class CuisineController {
 
+    static async getPubCuisines(req, res, next){
+
+        const { search, filter, sort, page } = req.query;
+
+        let paramQuerySQL = {
+            include: [{
+                model: User,
+                attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
+            },
+            { model: Category }]
+        };
+        let limit;
+        let offset;
+
+        //SEARCH BY CUISINE NAME
+        if (search !== '' && typeof search !== 'undefined') {
+            paramQuerySQL.where = {
+                name: {
+                    [Op.iLike]: `%${search}%`
+                }
+            }
+        }
+           
+        // SORTING DATA TERBARU & TERLAMA
+        if (sort !== '' && typeof sort !== 'undefined') {
+            if (sort.charAt(0) !== '-') {
+                paramQuerySQL.order  = [[sort, 'createdAt', 'ASC']];
+            } else {
+                paramQuerySQL.order  = [[sort.replace('-', ''), 'createdAt', 'DESC']];
+            }
+        }
+
+          if (filter !== '' && typeof filter !== 'undefined') {
+            const query = filter.category.split(',').map((item) => ({
+              [Op.eq]: item,
+            }));
+          
+            paramQuerySQL.where = {
+                categoryId: { [Op.or]: query },
+            };
+          }
+
+
+        // PAGINATION
+          if (page !== '' && typeof page !== 'undefined') {
+            if (page.size !== '' && typeof page.size !== 'undefined') {
+              limit = page.size;
+              paramQuerySQL.limit = limit;
+            }
+          
+            if (page.number !== '' && typeof page.number !== 'undefined') {
+              offset = page.number * limit - limit;
+              paramQuerySQL.offset = offset;
+            }
+          } else {
+            limit = 10;
+            offset = 0; //(page - 1) * limit;
+            paramQuerySQL.limit = limit;
+            paramQuerySQL.offset = offset;
+          }
+          
+
+
+        try {
+            const cuisines = await Cuisine.findAll(paramQuerySQL);
+            res.status(200).json(cuisines);
+        } catch (error) {
+            // next(error);
+            console.log(error)
+        }
+    }
+
+            // FILTER ENTITAS CUISINE BASED ON CATEGORY
+        //  if (filter !== '' && typeof filter !== 'undefined') {        
+        //     paramQuerySQL.where = {
+        //       categoryId: { [Op.iLike]: `%${filter}%` },
+        //     };
+        //   }
+
+
+    // try {
+    //     const cuisines = await Cuisine.findAll({
+    //         include: [{
+    //             model: User,
+    //             attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
+    //         },
+    //         { model: Category }]
+    //     });
+    //     res.status(200).json(cuisines);
+    // }
+
+
     static async getCuisines(req, res, next){
         try {
             const cuisines = await Cuisine.findAll({
-                include: [{
-                    model: User,
-                    attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
-                },
-                { model: Category }]
-            });
-            res.status(200).json(cuisines);
+                        include: [{
+                            model: User,
+                            attributes: {exclude: ['password', 'phoneNumber', 'address']},  //REVISED
+                        },
+                        { model: Category }]
+                    });
+                    res.status(200).json(cuisines);
         } catch (error) {
             next(error);
         }

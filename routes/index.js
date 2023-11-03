@@ -12,7 +12,7 @@ const upload = multer({ storage });
 const router = require('express').Router();  
 
 
-router.get("/pub/cuisines", CuisineController.getCuisines); //all
+router.get("/pub/cuisines", CuisineController.getPubCuisines); //all
 
 router.get("/pub/cuisines/:id", CuisineController.getCuisine);  //by id
 
@@ -50,7 +50,7 @@ router.delete("/cuisines/:id", cuisineAuthorization, CuisineController.deleteCui
 
 // UPDATE imgUrl
 
-router.patch("/cuisines/:id/image-url", upload.single('image'), cuisineAuthorization, CuisineController.updateImageUrl) //adminOnlyAuth,
+router.patch("/cuisines/:id/image-url", upload.single('image'), cuisineAuthorization, CuisineController.updateImageUrl)
 
 
 // ERROR HANDLER

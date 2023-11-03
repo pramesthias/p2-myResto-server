@@ -1,11 +1,10 @@
 const app = require('../app');
 const request = require("supertest");
 const { sequelize, User, Category } = require("../models");
-const { signToken } = require('../helpers/jwt');
 const { queryInterface } = sequelize;
 
 let user1 = {
-    username: "string",
+    username: "admin",
     email: "admin@email.com",
     password: "12345",
     role: "Admin",
@@ -14,7 +13,7 @@ let user1 = {
 }
 
 let user2 = {
-    username: "string",
+    username: "staff",
     email: "staff2@how.com",
     password: "12345",
     phoneNumber: "087968012",
