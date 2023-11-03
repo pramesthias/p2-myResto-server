@@ -1,6 +1,6 @@
 const app = require('../app');
 const request = require("supertest");
-const { sequelize, User } = require("../models");
+const { sequelize, User, Category } = require("../models");
 const { signToken } = require('../helpers/jwt');
 const { queryInterface } = sequelize;
 
@@ -25,7 +25,9 @@ const user1 = {
 let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC9.eyJpZCI6MSwiaWF0IjoxNjk4ODI1MDc0Q.A85Qn24V-jNwPqbc1VuFAuvgwPXFhcpVAClS0J78OS"
 let admin;
 let tokenAdm;
-let cuisine
+let cuisine;
+
+let seed_category = { name: "Western Cuisine" };
 
 // let staff
 // let tokenStf
@@ -34,6 +36,8 @@ beforeAll(async () => {
     admin = await User.create(user1);
     tokenAdm = signToken({id: admin.id});
     
+    let category = await Category.create(seed_category); 
+
     // let staff = await User.create(user2);
     // tokenStf = signToken({id: staff.id});
 
@@ -42,7 +46,7 @@ beforeAll(async () => {
         description: "Dumpling",
         price: 30000,
         imgUrl: "https://asset.kompas.com/crops/J-BSOZ4kJgmEYryOU3GqKlU23g4=/0x0:1000x667/750x500/data/photo/2020/08/01/5f24e8ed0cbc9.jpg",
-        categoryId: 3,
+        categoryId: category.id,
         authorId: admin.id
     }
 })
@@ -96,7 +100,7 @@ describe("/cuisines", () => {
 
 
     // Gagal ketika request body tidak sesuai (validation required)
-    test.only("failed because incomplete req body", async () => {
+    test("failed because incomplete req body", async () => {
         let {status, body} = await request(app)
             .post("/cuisines")
             .set("Authorization", `Bearer ${tokenAdm}`)
@@ -127,6 +131,12 @@ describe("/cuisines", () => {
 
 afterAll(async () => {
     await queryInterface.bulkDelete("Cuisines",null, {
+        truncate: true,
+        cascade: true,
+        restartIdentity: true
+    })
+
+    await queryInterface.bulkDelete("Categories",null, {
         truncate: true,
         cascade: true,
         restartIdentity: true

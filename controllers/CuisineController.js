@@ -66,32 +66,12 @@ module.exports = class CuisineController {
 
         console.log(paramQuerySQL)
         try {
-            const cuisines = await Cuisine.findAndCountAll(paramQuerySQL);
+            const cuisines = await Cuisine.findAll(paramQuerySQL);
             res.status(200).json(cuisines);
         } catch (error) {
-            // next(error);
-            console.log(error)
+            next(error);
         }
     }
-
-
-    //  if (filter !== '' && typeof filter !== 'undefined') {        
-    //     paramQuerySQL.where = {
-    //       categoryId: { [Op.iLike]: `%${filter}%` },
-    //     };
-    //   }
-
-
-    // try {
-    //     const cuisines = await Cuisine.findAll({
-    //         include: [{
-    //             model: User,
-    //             attributes: {exclude: ['username', 'phoneNumber', 'address']},  //REVISED
-    //         },
-    //         { model: Category }]
-    //     });
-    //     res.status(200).json(cuisines);
-    // }
 
 
     static async getCuisines(req, res, next) {
@@ -129,7 +109,6 @@ module.exports = class CuisineController {
     static async createCuisine(req, res, next) {
         try {
             const cuisine = await Cuisine.create({ ...req.body, authorId: req.user.id });    //gaperlu kirim authorId karna ikutin access token
-            console.log({ authorId: req.user.id })
             res.status(201).json(cuisine);
         } catch (error) {
             next(error);
