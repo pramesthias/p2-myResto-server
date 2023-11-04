@@ -1,0 +1,162 @@
+[
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    },
+    {
+        "name": "Dumpling",
+        "description": "Dumpling adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "categoryId": 2,
+        "authorId": 1
+    },
+    {
+        "name": "Bakso",
+        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "price": "18000",
+        "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
+        "categoryId": 1,
+        "authorId": 1
+    },
+    {
+        "name": "Sushi",
+        "description": "Sushi adalah Chinese Food",
+        "price": "18000",
+        "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
+        "categoryId": 3,
+        "authorId": 1
+    }
+]
