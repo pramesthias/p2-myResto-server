@@ -11,6 +11,7 @@ const upload = multer({ storage });
 
 const router = require('express').Router();  
 
+router.get("/", UserController.home)
 
 router.get("/pub/cuisines", CuisineController.getPubCuisines); //all
 

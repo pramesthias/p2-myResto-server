@@ -4,6 +4,10 @@ const {User} = require("../models");
 
 module.exports = class UserController {
 
+    static async home(req, res){
+        res.status(200).json("WELCOME TO RESTAURANT APP SERVER by pramesthias")
+    }
+
     static async registerUser(req, res, next){
         try {   //req.body
             const {username, email, password, phoneNumber, address} = req.body
