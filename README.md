@@ -4,6 +4,8 @@
 > Tuliskan API Docs kamu di sini
 
 # My First Server App
+**[https://resto-server-h8.pramresto.site](https://resto-server-h8.pramresto.site)**
+
 My First Server App is an application developed for assignment purposes. This app has : 
 * RESTful endpoint for asset's CRUD operation
 * JSON formatted response
