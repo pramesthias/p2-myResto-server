@@ -8,7 +8,9 @@ async function authentication(req, res, next){
 
         if(!access_token) throw {name: "Unauthenticated"}   //AA 401
 
-        const { id } = verifyToken(access_token.replace("Bearer ", ""))
+        const { id } = verifyToken(access_token.replace("Bearer ", "")) 
+
+        // const { id } = verifyToken(access_token.slice(7))
 
         let user = await User.findByPk(id)
 
@@ -19,11 +21,12 @@ async function authentication(req, res, next){
             role: user.role
         }
 
-        // console.log(req.user)
+        console.log(req.user)
         next();
 
     } catch (error) {
         next(error);
+        console.log(error)
     }
 }
 

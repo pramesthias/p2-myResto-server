@@ -40,11 +40,13 @@ router.put("/categories/:id", adminOnlyAuth, CategoryController.editCategory);
 
 router.get("/cuisines", CuisineController.getCuisines); 
 
+// router.get("/cuisines", CuisineController.getPubCuisines); // pagination dsb
+
 router.get("/cuisines/:id", CuisineController.getCuisine); 
 
-router.post("/cuisines", CuisineController.createCuisine); 
+router.post("/cuisines/add", CuisineController.createCuisine); 
 
-router.put("/cuisines/:id", cuisineAuthorization, CuisineController.editCuisine);  
+router.put("/cuisines/:id/edit", cuisineAuthorization, CuisineController.editCuisine);  
 
 router.delete("/cuisines/:id", cuisineAuthorization, CuisineController.deleteCuisine); 
 

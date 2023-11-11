@@ -24,7 +24,7 @@ module.exports = class UserController {
     }
 
 
-    static async login(req, res, next){   //bukan create data!
+    static async login(req, res, next){   //bukan create data! maka validasi di cek disini
         try {
             const {email, password} = req.body;
 
@@ -50,8 +50,7 @@ module.exports = class UserController {
             if(!isValidPassword){
                 next({name: 'Unauthenticated', message: "user not found or password not matched"});
                 return;
-
-        }
+            }
 
             const access_token = signToken({ id: user.id });
             res.status(200).json({ access_token, email: user.email, role: user.role}); 

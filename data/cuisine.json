@@ -1,7 +1,7 @@
 [
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -9,7 +9,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -17,15 +17,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -33,7 +33,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -41,15 +41,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -57,7 +57,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -65,15 +65,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -81,7 +81,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -89,15 +89,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -105,7 +105,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -113,15 +113,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -129,7 +129,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,
@@ -137,15 +137,15 @@
     },
     {
         "name": "Dumpling",
-        "description": "Dumpling adalah Chinese Food",
+        "description": "Dumpling is made from a variety of starchy sources, often wrapped around a filling and it may be filled with meat, fish, tofu, cheese, vegetables, or a combination.",
         "price": "18000",
-        "imgUrl": "https://www.femina.co.id/images/images/dumpling%20kukus.jpg",
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmF-ZkU3v9SyhSVvNsJmq5W6QJUWqF6Juf8Q&usqp=CAU",
         "categoryId": 2,
         "authorId": 1
     },
     {
         "name": "Bakso",
-        "description": "Bakso adalah jenis bola daging yang dibuat dari campuran daging sapi giling",
+        "description": "Bakso is an Indonesian meatball made from beef surimi. The word bakso may refer to a single meatball or the complete dish of meatball soup.",
         "price": "18000",
         "imgUrl": "https://asset.kompas.com/crops/x6OULHa8pMi47UnvDTzf1j62ov4=/3x0:700x465/750x500/data/photo/2022/08/25/6306b48bb80a1.jpeg",
         "categoryId": 1,
@@ -153,7 +153,7 @@
     },
     {
         "name": "Sushi",
-        "description": "Sushi adalah Chinese Food",
+        "description": "Sushi is a Japanese dish featuring specially prepared rice and usually some type of fish or seafood, often raw, but sometimes cooked.",
         "price": "18000",
         "imgUrl": "https://img.taste.com.au/lNnNoTvU/taste/2010/01/sushi-187034-1.jpg",
         "categoryId": 3,

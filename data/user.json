@@ -1,6 +1,6 @@
 [
     {
-        "username": "admin1",
+        "username": "Admin",
         "email": "admin@email.com",
         "password": "12345",
         "role": "Admin",

@@ -20,6 +20,7 @@ async function cuisineAuthorization(req, res, next) {
 
 async function adminOnlyAuth(req, res, next){
     try {
+        console.log(req.user.role)
         if(req.user.role === "Admin"){
             next();
         } else {

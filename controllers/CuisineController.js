@@ -15,10 +15,15 @@ module.exports = class CuisineController {
 
     static async getPubCuisines(req, res, next) {
 
-        const { search, filter, sort, page = 1} = req.query; 
+        try {
+        // const { search, filter, sort, page = 1} = req.query; 
+        const { search, filter, sort, page} = req.query; 
 
-        let limit = 10;
-        let offset = (+page - 1) * limit;
+        // let limit = 10;
+        // let offset = (+page - 1) * limit;
+
+        //ADDED
+        // let offset = (+page) ? 0 : 8 * (page - 1);
 
         let paramQuerySQL = {
             include: [
@@ -31,8 +36,8 @@ module.exports = class CuisineController {
                     attributes: ['name']
                 }
             ],
-            limit,      //PAGINATION HERE
-            offset
+            limit: 10,      //PAGINATION HERE
+            offset: !Number(page) ? 0 : 10 * (page - 1)
         };
 
         //SEARCH BY CUISINE NAME
@@ -60,9 +65,18 @@ module.exports = class CuisineController {
             };
         }
         
-        try {
-            const cuisines = await Cuisine.findAll(paramQuerySQL);
-            res.status(200).json(cuisines);
+        
+            //ADDED
+            const {count, rows} = await Cuisine.findAndCountAll(paramQuerySQL);
+            const totalPage = Math.ceil(count/10)
+            res.status(200).json({
+                total: count,
+                totalPage,
+                data: rows
+            })
+
+            // const cuisines = await Cuisine.findAll(paramQuerySQL);
+            // res.status(200).json(cuisines);
         } catch (error) {
             next(error);
         }
@@ -102,6 +116,7 @@ module.exports = class CuisineController {
             res.status(200).json(cuisine);
         } catch (error) {
             next(error);
+            console.log(error)
         }
     }
 
